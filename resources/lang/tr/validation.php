@@ -145,7 +145,10 @@ return [
     'attributes' => [
         'image' => 'Resim',
         'title' => 'Başlık',
-        'content' => 'İçerik'
+        'content' => 'İçerik',
+        'name' => 'Ad Soyad',
+        'password' => 'Şifre',
+        'email' => 'Email'
     ],
 
 ];

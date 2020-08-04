@@ -51,11 +51,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-    <style>
-        .table > tbody > tr > td {
-            vertical-align: middle;
-        }
-    </style>
+    <link rel="stylesheet" href="/backend/custom/css/custom.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -85,27 +81,27 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="/backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="/storage/images/users/{{ Auth::user()->image }}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Ertuğrul Özdoğan</span>
+                            <span class="hidden-xs">{{ Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="/storage/images/users/{{ Auth::user()->image }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Ertuğrul Özdoğan
-                                    <small>ADMİN</small>
+                                    {{ Auth::user()->name }}
+                                    <small>{{ Auth::user()->role }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="{{ route('profile.Edit',[Auth::user()->id]) }}" class="btn btn-default btn-flat">Profili Düzenle</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{{ route('admin.Logout') }}" class="btn btn-default btn-flat">Çıkış</a>
                                 </div>
                             </li>
                         </ul>
@@ -127,20 +123,26 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="/storage/images/users/{{ Auth::user()->image }}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Ertuğrul Özdoğan</p>
+                    <p>{{ Auth::user()->name }}</p>
                 </div>
             </div>
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENULER</li>
-                <!-- Optionally, you can add icons to the links -->
                 <li class="{{ request()->route()->getName() === 'admin.index' ? 'active' : '' }}"><a href="{{ route('admin.index') }}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-                <li class="{{ request()->route()->getName() === 'settings.index' ? 'active' : '' }}" ><a href="{{ route('settings.index') }}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
-                <li class="{{ request()->route()->getName() === 'blogs.index' ? 'active' : '' }}" ><a href="{{ route('blogs.index') }}"><i class="fa fa-cog"></i> <span>Bloglar</span></a></li>
+                <li class="{{ request()->route()->getName() === 'blog.index' ? 'active' : '' }}" ><a href="{{ route('blog.index') }}"><i class="fa fa-list-alt"></i> <span>Bloglar</span></a></li>
+                <li class="{{ request()->route()->getName() === 'page.index' ? 'active' : '' }}"><a href="{{ route('page.index') }}"><i class="fa fa-paper-plane"></i> <span>Pages</span></a></li>
+                <li class="{{ request()->route()->getName() === 'slider.index' ? 'active' : ''}}"><a href="{{ route('slider.index') }}"><i class="fa fa-clone"></i> <span>Sliders</span></a></li>
+                @if(Auth::user()->role == 'admin')
+                    <li class="{{ request()->route()->getName() === 'user.index' ? 'active' : '' }}"><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
+                    <li class="{{ request()->route()->getName() === 'settings.index' ? 'active' : '' }}" ><a href="{{ route('settings.index') }}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
+                @endif
+                <hr>
+                <li><a href="{{ route('admin.Logout') }}"><i class="fa fa-close"></i> <span>Çıkış</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>

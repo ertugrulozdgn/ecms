@@ -58,9 +58,9 @@ class SettingsController extends Controller
 //            $request->setting_value->storeAs('public/images/settings/',$file_name);
 //            $request->setting_value = $file_name;
 
-            $file_name = uniqid().'.'.$request->setting_value->getClientOriginalExtension();
-            $request->setting_value->move(public_path('images/settings'),$file_name);
-            $request->setting_value = $file_name;
+//            $file_name = uniqid().'.'.$request->setting_value->getClientOriginalExtension();
+//            $request->setting_value->move(public_path('images/settings'),$file_name);
+//            $request->setting_value = $file_name;
         }
 
 

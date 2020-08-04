@@ -7,7 +7,7 @@
                 <h3 class="box-title">Blog Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
                     @CSRF
                     <div class="form-group">
                         <div class="row">
@@ -26,6 +26,7 @@
                             </div>
                         </div>
                     </div>
+
 
 
                     <div class="form-group">

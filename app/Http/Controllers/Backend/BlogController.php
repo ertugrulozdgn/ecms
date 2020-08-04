@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -42,6 +43,8 @@ class BlogController extends Controller
         $request->image->storeAs('public/images/blogs',$blog_image);
         $blog->image = $blog_image;
         $blog->save();
+
+
 
         if ($blog->save())
         {
@@ -87,10 +90,13 @@ class BlogController extends Controller
             $blog->content = $request->input('content');
             $blog->status = $request->input('status');
 
+            Storage::delete('public/images/blogs',$blog->image);
+
             $blog_image = $blog->slug.'.'.$request->image->getClientOriginalExtension();
             $request->image->storeAs('public/images/blogs',$blog_image);
             $blog->image = $blog_image;
             $blog->save();
+
 
         } else {
 
@@ -105,11 +111,11 @@ class BlogController extends Controller
         if ($blog->save())
         {
 
-            return redirect()->back()->with('success','GÜncelleme İşlemi Başarılı');
+            return redirect()->back()->with('success','Güncelleme İşlemi Başarılı');
 
         } else {
 
-            return redirect()->back()->with('success','GÜncelleme İşlemi Başarısız');
+            return redirect()->back()->with('success','Güncelleme İşlemi Başarısız');
 
         }
     }
@@ -118,6 +124,7 @@ class BlogController extends Controller
     public function destroy($id)
     {
         $blog = Blog::find(intval($id));
+        $blog->delete();
 
         if ($blog->delete())
         {

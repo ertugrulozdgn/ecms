@@ -12,7 +12,7 @@
                         <th></th>
                         <th>Anahtar</th>
                         <th>Değer</th>
-                        <th></th>
+                        <th>Eylem</th>
                     </tr>
                     <tbody>
                     @foreach($settings as $setting)
@@ -20,8 +20,8 @@
                             <td>{{ $setting->id }}</td>
                             <td>{{ $setting->key}}</td>
                             <td>{{ $setting->value }}</td>
-                            <td width="5"><a href="{{ route('settings.edit',[$setting->id]) }}"><i class="fa fa-pencil-square"></i></a></td>
-                            <td width="5"><a href="javascript:void(0)"><i id="{{ $setting->id }}" class="fa fa-trash-o"></i></a></td>
+                            <td width="5"><a href="{{ route('settings.edit',[$setting->id]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
+                            <td width="5"><a href="javascript:void(0)"><i id="{{ $setting->id }}" class="fa fa-trash-o fa-lg"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>

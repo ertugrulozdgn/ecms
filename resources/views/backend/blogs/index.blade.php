@@ -6,7 +6,7 @@
                 <h3 class="box-title">Bloglar</h3>
 
                 <div align="right">
-                    <a href="{{ route('blogs.create')}}"><button class="btn btn-success">Ekle</button></a>
+                    <a href="{{ route('blog.create')}}"><button class="btn btn-success">Ekle</button></a>
                 </div>
             </div>
             <div class="box-body">
@@ -15,16 +15,18 @@
                     <tr>
                         <th>Resim</th>
                         <th>Başlık</th>
+                        <th>Durumu</th>
                         <th>Oluşturulma Tarihi</th>
                     </tr>
                     <tbody id="sortable">
                     @foreach($blogs as $blog)
-                        <tr id="item-{{ $blog->id }}">
-                            <td class="align-middle"><img width="120" class="img-fluid" src="/storage/images/blogs/{{ $blog->image }}" alt="{{ $blog->title }}"></td>
-                            <td class="sortable">{{ $blog->title}}</td>
+                        <tr id="item-{{ $blog->id }}" class="{{ $blog->status == 0 ? 'alert alert-light' : ''}}">
+                            <td class="align-middle sortable"><img width="120" class="img-fluid" src="/storage/images/blogs/{{ $blog->image }}" alt="{{ $blog->title }}"></td>
+                            <td>{{ $blog->title}}</td>
+                            <td>{{ $blog->status_name }}</td>
                             <td>{{ $blog->created_at}}</td>
-                            <td width="5"><a href="{{ route('blogs.edit',[$blog->id]) }}"><i class="fa fa-pencil-square"></i></a></td>
-                            <td width="5"><a href="javascript:void(0)"><i id="{{ $blog->id }}" class="fa fa-trash-o"></i></a></td>
+                            <td width="5"><a href="{{ route('blog.edit',[$blog->id]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
+                            <td width="5"><a href="javascript:void(0)"><i id="{{ $blog->id }}" class="fa fa-trash-o fa-lg"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -83,7 +85,7 @@
                 function () {
                     $.ajax({
                         type:"DELETE",
-                        url:"/admin/blogs/"+destroy_id,
+                        url:"/admin/blog/"+destroy_id,
                         success: function (msg) {
                             if (msg)
                             {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Setting;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,26 +15,73 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Auth::routes();
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 
                             //BACKEND
 
-Route::get('/admin','Backend\DefaultController@index')->name('admin.index');
-
 Route::namespace('Backend')->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::resource('settings','SettingsController');
-    });
+        Route::middleware(['user'])->group(function () {
+            Route::prefix('admin')->group(function () {
+
+                //DASHBOARD
+                Route::get('/','DefaultController@index')->name('admin.index');
+
+                //BLOG
+                Route::resource('blog','BlogController');
+                Route::post('blog/sortable','BlogController@sortable')->name('blog.Sortable');
+
+                //PAGE
+                Route::resource('page','PageController');
+                Route::post('page/sortable','PageController@sortable')->name('page.Sortable');
+
+                //SLIDER
+                Route::resource('slider','SliderController');
+                Route::post('slider/sortable','SliderController@sortable')->name('slider.Sortable');
+
+                //PROFILE
+                Route::get('/profile/{id}/edit','ProfileController@edit')->name('profile.Edit');
+                Route::post('/profile/{id}','ProfileController@update')->name('profile.Update');
+
+                //LOGOUT
+                Route::get('/logout','DefaultController@logout')->name('admin.Logout');
+
+            });
+
+            Route::middleware(['admin'])->group(function () {
+                Route::prefix('admin')->group(function() {
+
+                    //USER
+                    Route::resource('user','UserController');
+
+                    //SETTİNGS
+                    Route::resource('settings','SettingsController');
+                });
+            });
+        });
+
+
+        Route::prefix('admin')->group(function() {
+
+            //LOGIN
+            Route::get('/login','DefaultController@login')->name('admin.Login');
+            Route::post('/login','DefaultController@authenticate')->name('admin.Authenticate');
+
+        });
+
 });
 
-Route::namespace('Backend')->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::resource('blogs','BlogController');
-        Route::post('sortable','BLogController@sortable')->name('blog.Sortable');
-    });
+
+                        //FRONTEND
+
+Route::namespace('frontend')->group(function() {
+
+    //HOME
+    Route::get('/','DefaultController@index')->name('home.Index');
 });
 
 
@@ -42,3 +90,9 @@ Route::namespace('Backend')->group(function () {
 //Route::get('/admin/deneme', function () {
 //   dd(Setting::pluck('value','key')->all());
 //});
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');

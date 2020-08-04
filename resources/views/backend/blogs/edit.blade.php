@@ -7,7 +7,7 @@
                 <h3 class="box-title">Blog Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ route('blogs.update',[$blog->id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('blog.update',[$blog->id]) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @CSRF
                     <div class="form-group">
