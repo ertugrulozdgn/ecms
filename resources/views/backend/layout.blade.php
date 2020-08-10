@@ -51,6 +51,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+    <!-- CUSTOM.CSS-->
     <link rel="stylesheet" href="/backend/custom/css/custom.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -134,9 +135,9 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENULER</li>
                 <li class="{{ request()->route()->getName() === 'admin.index' ? 'active' : '' }}"><a href="{{ route('admin.index') }}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+                <li class="{{ request()->route()->getName() === 'slider.index' ? 'active' : ''}}"><a href="{{ route('slider.index') }}"><i class="fa fa-clone"></i> <span>Sliders</span></a></li>
                 <li class="{{ request()->route()->getName() === 'blog.index' ? 'active' : '' }}" ><a href="{{ route('blog.index') }}"><i class="fa fa-list-alt"></i> <span>Bloglar</span></a></li>
                 <li class="{{ request()->route()->getName() === 'page.index' ? 'active' : '' }}"><a href="{{ route('page.index') }}"><i class="fa fa-paper-plane"></i> <span>Pages</span></a></li>
-                <li class="{{ request()->route()->getName() === 'slider.index' ? 'active' : ''}}"><a href="{{ route('slider.index') }}"><i class="fa fa-clone"></i> <span>Sliders</span></a></li>
                 @if(Auth::user()->role == 'admin')
                     <li class="{{ request()->route()->getName() === 'user.index' ? 'active' : '' }}"><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
                     <li class="{{ request()->route()->getName() === 'settings.index' ? 'active' : '' }}" ><a href="{{ route('settings.index') }}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>

@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ config('settings.Description') }}">
     <meta name="author" content="{{ config('settings.Author') }}">
-    <meta name="keywors" content="{{ config('settings.Keywords') }}">
+    <meta name="keywors" content="{!! config('settings.Keywords') !!}">
 
-{{--    <title>@yield('title')</title>--}}
+    <title>@yield('title')</title>
 
-    <title>{{ config('settings.Title') }}</title>
+{{--    <title>{{ config('settings.Title') }}</title>--}}
 
     <!-- Bootstrap core CSS -->
     <link href="/frontend/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,66 +19,55 @@
     <!-- Custom styles for this template -->
     <link href="/frontend/css/modern-business.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="/backend/custom/css/custom.css">
+
+    <script src="https://kit.fontawesome.com/ded3d6d8e7.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-
-<!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="{{ route('home.Index') }}">BLOG<small class="text-muted">TR</small></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
+                <li class="nav-item {{ request()->route()->getName() == 'home.Index' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('home.Index') }}">Anasayfa</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="services.html">Services</a>
+
+                <li class="nav-item {{ request()->route()->getName() == 'frontend.blog.Index' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{ route('frontend.blog.Index') }}">Bloglar</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Portfolio
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                        <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-                        <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-                        <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-                        <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-                        <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-                    </div>
-                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Blog
+                        Sayfalar
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-                        <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-                        <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+{{--                        @foreach(App\Models\Page::orderBy('must')->get() as $page)--}}
+{{--                            <a class="dropdown-item" href="{{ $page->link }}"><i class="fas fa-angle-double-right text-muted"></i> {{ $page->title }}</a>--}}
+{{--                        @endforeach--}}
+
+                        {{-- YUKARIDAKİ GİBİDE OLUR --}}
+                        @foreach($pagesNav as $pageNav)
+                            <a class="dropdown-item" href="{{ $pageNav->link }}"><i class="fas fa-angle-double-right text-muted"></i> {{ $pageNav->title }}</a>
+                        @endforeach
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Other Pages
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-                        <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-                        <a class="dropdown-item" href="faq.html">FAQ</a>
-                        <a class="dropdown-item" href="404.html">404</a>
-                        <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-                    </div>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">Bize Ulaşın</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+{{--@widget('header')--}}
+
 
 @yield('content')
 

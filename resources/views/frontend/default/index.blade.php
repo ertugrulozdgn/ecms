@@ -1,5 +1,5 @@
 @extends('frontend.layout')
-@section('title','Anasayfa Başlığı')
+@section('title', config('settings.Title'))
 @section('content')
     <header>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -9,10 +9,10 @@
                     <div class="carousel-caption d-none d-md-block">
                         @if(strlen($slider->url) > 0)
                             <a href="{{ $slider->url }}">
-                                <h3>{{ $slider->title }}</h3>
+                                <h3>{{ $slider->title }} (link)</h3>
                             </a>
                         @else
-                            <h3>{{ $slider->title }}</h3>
+                            <a class="text-white" href="{{ route('frontend.slider.Detail',[$slider->slug,$slider->id]) }}"><h3>{{ $slider->title }}</h3></a>
                         @endif
                     </div>
                 </div>
@@ -32,20 +32,28 @@
     <!-- Page Content -->
     <div class="container">
 
-        <h2 class="mt-4">Blog</h2>
+        <h2 class="text-muted mt-4">Bloglar</h2>
+
+        <hr>
 
         <div class="row">
+            @foreach($blogs as $blog)
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="" alt=""></a>
+                        <a href="{{ $blog->link }}"><img class="card-img-top" src="/storage/images/blogs/{{ $blog->image }}" alt=""></a>
                         <div class="card-body">
+                            <span class="text-muted">{{ $blog->created_at->diffForHumans() }}</span>
                             <h4 class="card-title">
-                                <a href="#">Blog Başlığı</a>
+                                <a href="{{ $blog->link }}">{{ $blog->title }}</a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                            <p class="card-text">{!! substr($blog->content,0,140).'...' !!}</p>
+                            <hr>
+                            <span class="text-muted mr-auto">{{ $blog->user->name }}</span>
+                            <span class="text-muted" style="float: right;"><i style="color: green;" class="fas fa-eye fa-sm"></i> {{ $blog->hit }}</span>
                         </div>
                     </div>
                 </div>
+            @endforeach
         </div>
 
         <div class="row">

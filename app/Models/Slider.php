@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
+    public function getUserAttribute()
+    {
+        return User::find($this->id);
+    }
+
+
     public function getStatusNameAttribute() { //$slider->status_name
 
         switch ($this->status) {

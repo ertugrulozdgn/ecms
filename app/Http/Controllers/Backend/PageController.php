@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -27,20 +28,21 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'title' => 'required',
             'content' => 'required'
         ]);
 
         $page = new Page;
+        $page->user_id = Auth::user()->id;
         $page->title = $request->input('title');
         $page->slug = Str::slug($page->title);
         $page->content = $request->input('content');
         $page->status = $request->input('status');
 
-        $page_image = $page->slug.'.'.$request->image->getClientOriginalExtension();
-        $request->image->storeAs('public/images/pages',$page_image);
-        $page->image = $page_image;
+        $image_path = $page->slug.'.'.$request->image->getClientOriginalExtension();
+        $request->image->storeAs('public/images/pages',$image_path);
+        $page->image = $image_path;
         $page->save();
 
 
@@ -75,7 +77,7 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'image' => $request->hasFile('image') ? 'required|image|mimes:jpg,jpeg,png|max:2048' : '',
+            'image' => $request->hasFile('image') ? 'required|image|mimes:jpeg,jpg,png|max:2048' : '',
             'title' => 'required',
             'content' => 'required'
         ]);
@@ -89,13 +91,15 @@ class PageController extends Controller
             $page->content = $request->input('content');
             $page->status = $request->input('status');
 
-            Storage::delete('public/images/pages',$page->image);
+//            Storage::delete('public/images/blogs',$blog->image);
+
+            $image_path = public_path('storage/images/blogs/').$page->image;
+            @unlink($image_path);
 
             $page_image = $page->slug.'.'.$request->image->getClientOriginalExtension();
             $request->image->storeAs('public/images/pages',$page_image);
             $page->image = $page_image;
             $page->save();
-
 
         } else {
 
@@ -123,6 +127,9 @@ class PageController extends Controller
     public function destroy($id)
     {
         $page = Page::find(intval($id));
+
+        $image_path = public_path('/storage/images/pages/').$page->image;
+        @unlink($image_path);
 
         if ($page->delete())
         {

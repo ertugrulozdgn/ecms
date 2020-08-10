@@ -4,11 +4,12 @@
     <div class="box box-primary">
         <div class="box-header">
             <div class="box-header with-border">
-                <h3 class="box-title">Blog Oluşturma</h3>
+                <h3 class="box-title">Sayfa Oluşturma</h3>
             </div>
             <div class="box-body">
                 <form action="{{ route('page.store') }}" method="POST" enctype="multipart/form-data">
                     @CSRF
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-12">

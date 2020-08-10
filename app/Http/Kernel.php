@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Share;
 use http\Client\Curl\User;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 

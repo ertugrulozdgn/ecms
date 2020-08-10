@@ -13,3 +13,8 @@
 .alert-light {
     background-color: #ffcccc !important;
 }
+
+a {
+    text-decoration: none !important;
+    color: black;
+}

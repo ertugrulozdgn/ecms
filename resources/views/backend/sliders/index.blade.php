@@ -15,14 +15,17 @@
                     <tr>
                         <th>Resim</th>
                         <th>Başlık</th>
+                        <th>Yazar</th>
+                        <th>Oluşturulma Tarihi</th>
                         <th>Durum</th>
-                        <th>Eylem</th>
                     </tr>
                     <tbody id="sortable">
                     @foreach($sliders as $slider)
                         <tr id="item-{{ $slider->id }}" class="{{ $slider->status == 0 ? 'alert alert-light' : '' }}">
                             <td class="align-middle sortable"><img width="120" class="img-fluid" src="/storage/images/sliders/{{ $slider->image }}" alt="{{ $slider->title }}"></td>
                             <td>{{ $slider->title}}</td>
+                            <td>{{ $slider->user->name}}</td>
+                            <td>{{ $slider->created_at->format('j F Y') }}</td>
                             <td>{{ $slider->status_name }}</td>
                             <td width="5"><a href="{{ route('slider.edit',[$slider->id]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
                             <td width="5"><a href="javascript:void(0)"><i id="{{ $slider->id }}" class="fa fa-trash-o fa-lg"></i></a></td>

@@ -39,7 +39,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->role = $request->input('role');
-        $user->status = $request->input('status');
+        $user->status = (int) $request->input('status');
 
         $user_image = uniqid(). '.' . $request->image->getClientOriginalExtension();
         $request->image->storeAs('public/images/users',$user_image);
@@ -83,7 +83,10 @@ class UserController extends Controller
         if ($request->hasFile('image'))
         {
             $user = User::find($id);
-            Storage::delete('public/images/users',$user->image);
+//            Storage::delete('public/images/users',$user->image);
+            $image_path = public_path('storage/images/users/'.$user->image);
+            @unlink($image_path);
+
             $user_image = uniqid(). '.' . $request->image->getClientOriginalExtension();
             $request->image->storeAs('public/images/users',$user_image);
 
@@ -146,6 +149,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find(intval($id));
+
+        $image_path = public_path('storage/images/users/'.$user->image);
+        @unlink($image_path);
 
         if ($user->delete())
         {

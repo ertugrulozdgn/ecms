@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -12,7 +13,7 @@ class SliderController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::orderBy('must')->paginate(10);
+        $sliders = Slider::orderBy('must')->get();
 
         return view('backend.sliders.index',compact('sliders'));
     }
@@ -34,6 +35,7 @@ class SliderController extends Controller
         ]);
 
         $slider = new Slider;
+        $slider->user_id = Auth::user()->id;
         $slider->title = $request->input('title');
         $slider->slug = Str::slug($slider->title);
         $slider->content = $request->input('content');
@@ -93,7 +95,9 @@ class SliderController extends Controller
             $slider->status = $request->input('status');
             $slider->url = $request->input('url');
 
-            Storage::delete('public/images/sliders',$slider->image);
+//            Storage::delete('public/images/sliders',$slider->image);
+            $image_path = public_path('storage/images/sliders/'.$slider->image);
+            @unlink($image_path);
 
             $slider_image = $slider->slug.'.'.$request->image->getClientOriginalExtension();
             $request->image->storeAs('public/images/sliders',$slider_image);
@@ -122,12 +126,16 @@ class SliderController extends Controller
             return redirect()->back()->with('success','Güncelleme İşlemi Başarısız');
 
         }
+
     }
 
 
     public function destroy($id)
     {
         $slider = Slider::find(intval($id));
+
+        $image_path = public_path('storage/images/sliders/'.$slider->image);
+        @unlink($image_path);
 
         if ($slider->delete())
         {

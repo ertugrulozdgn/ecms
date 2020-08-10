@@ -81,18 +81,50 @@ Route::namespace('Backend')->group(function () {
 Route::namespace('frontend')->group(function() {
 
     //HOME
-    Route::get('/','DefaultController@index')->name('home.Index');
+    Route::get('/','HomeController@index')->name('home.Index');
+
+    //BLOGS
+    Route::get('/blogs','BlogController@index')->name('frontend.blog.Index');
+
+    //BLOG DETAIL
+    Route::get('/blog/{slug}-{id}','BlogController@show')->where([
+        'slug' => '[a-zA-Z-0-9-]+',
+        'id' => '[0-9]+'
+    ])->name('frontend.blog.Detail');
+
+    //SLIDER DETAIL
+    Route::get('/slider/{slug}-{id}','SliderController@show')->where([
+        'slug' => '[a-zA-Z-0-9-]+',
+        'id' => '[0-9]+'
+    ])->name('frontend.slider.Detail');
+
+    //PAGE DETAIL(DROPDOWN MENU)
+    Route::get('/page/{slug}','PageController@show')->where([
+
+    ])->name('frontend.page.Detail');
+
+
+
+
+
+
+
+
+
+
+    // Slider ve Blog modülünü birleştirmek için bir örnek (ihtiyacım olursa....)
+
+    Route::get('/deneme',function (){
+
+        $bir = \App\Models\Blog::where('status','1')->get()->toArray();
+
+        $iki = \App\Models\Slider::where('status','1')->get()->toArray();
+
+        $uc = array_merge($bir,$iki);
+
+        dd($bir,$iki,$uc);
+
+    });
 });
 
 
-
-
-//Route::get('/admin/deneme', function () {
-//   dd(Setting::pluck('value','key')->all());
-//});
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');

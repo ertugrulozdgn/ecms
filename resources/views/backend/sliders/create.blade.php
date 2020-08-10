@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label>Url</label>
-                                <input class="form-control" type="text" name="url" value="{{ old('url') }}" placeholder="Boş Bırakılabilir...">
+                                <input class="form-control" type="url" name="url" value="{{ old('url') }}" placeholder="Boş Bırakılabilir...">
                             </div>
                         </div>
                     </div>

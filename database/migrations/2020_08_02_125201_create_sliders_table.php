@@ -15,6 +15,7 @@ class CreateSlidersTable extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->unsigned();
             $table->mediumText('image');
             $table->string('title');
             $table->string('slug');
@@ -22,6 +23,7 @@ class CreateSlidersTable extends Migration
             $table->string('url')->nullable();
             $table->integer('must')->nullable();
             $table->enum('status',[0,1])->default(1);
+            $table->integer('hit')->default(0);
             $table->timestamps();
         });
     }

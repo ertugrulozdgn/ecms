@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -34,6 +35,7 @@ class BlogController extends Controller
         ]);
 
         $blog = new Blog;
+        $blog->user_id = Auth::user()->id;
         $blog->title = $request->input('title');
         $blog->slug = Str::slug($blog->title);
         $blog->content = $request->input('content');
@@ -43,7 +45,6 @@ class BlogController extends Controller
         $request->image->storeAs('public/images/blogs',$blog_image);
         $blog->image = $blog_image;
         $blog->save();
-
 
 
         if ($blog->save())
@@ -56,6 +57,8 @@ class BlogController extends Controller
             return redirect()->back()->with('success','Kaydetme İşlemi Başarısız');
 
         }
+
+
     }
 
 
@@ -70,11 +73,14 @@ class BlogController extends Controller
         $blog = Blog::where('id',$id)->first();   // $blog = Blog::find($id);  aynı şey
 
         return view('backend.blogs.edit',compact('blog'));
+
+
     }
 
 
     public function update(Request $request, $id)
     {
+
         $request->validate([
            'image' => $request->hasFile('image') ? 'required|image|mimes:jpg,jpeg,png|max:2048' : '',
             'title' => 'required',
@@ -90,7 +96,10 @@ class BlogController extends Controller
             $blog->content = $request->input('content');
             $blog->status = $request->input('status');
 
-            Storage::delete('public/images/blogs',$blog->image);
+//            Storage::delete('public/images/blogs',$blog->image);
+
+            $image_path = public_path('storage/images/blogs/').$blog->image;
+            @unlink($image_path);
 
             $blog_image = $blog->slug.'.'.$request->image->getClientOriginalExtension();
             $request->image->storeAs('public/images/blogs',$blog_image);
@@ -124,6 +133,10 @@ class BlogController extends Controller
     public function destroy($id)
     {
         $blog = Blog::find(intval($id));
+
+        $image_path = public_path('/storage/images/blogs/').$blog->image;
+        @unlink($image_path);
+
         $blog->delete();
 
         if ($blog->delete())
