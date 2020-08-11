@@ -14,14 +14,18 @@ class HomeController extends Controller
 
     public function index()
     {
-            if (Cache::has('sliders'))
-            {
-                $sliders = Cache::get('sliders');
-
-            } else {
-                $sliders = Slider::where('status','1')->orderBy('must')->get();
-                Cache::put('sliders',$sliders,60);
-            }
+        $sliders = Cache::tags('sliders')->remember('sliders', 60, function () {
+            return Slider::where('status','1')->orderBy('must')->get();
+        });
+        //
+        //    if (Cache::has('sliders'))
+        //    {
+        //        $sliders = Cache::get('sliders');
+//
+        //    } else {
+        //        $sliders = Slider::where('status','1')->orderBy('must')->get();
+        //        Cache::put('sliders',$sliders,60);
+        //    }
 
 
             if (Cache::has('blogs'))
