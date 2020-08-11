@@ -59,7 +59,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">Bize Ulaşın</a>
+                    <a class="nav-link" href="{{ route('frontend.contact.index') }}">Bize Ulaşın</a>
                 </li>
             </ul>
         </div>
@@ -74,7 +74,7 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        <p class="m-0 text-center text-white">{{ config('settings.Footer') }}</p>
     </div>
     <!-- /.container -->
 </footer>

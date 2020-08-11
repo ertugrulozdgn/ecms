@@ -52,4 +52,11 @@ class HomeController extends Controller
     {
         parent::__construct();
     }
+
+
+    public function contact()
+    {
+        return view('frontend.default.contact');
+    }
+
 }

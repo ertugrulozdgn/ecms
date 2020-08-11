@@ -23,6 +23,8 @@ class SettingsTableSeeder extends Seeder
         Setting::create(["key" => "Facebook", "value" => "www.facebook.com","type" => "text"]);
         Setting::create(["key" => "Twitter", "value" => "www.twitter.com","type" => "text"]);
         Setting::create(["key" => "Youtube", "value" => "www.youtube.com","type" => "text"]);
+        Setting::create(["key" => "Footer" , "value" =>"BLOGtr 2020" , "type" => "text"]);
+        Setting::create(["key" => "Working", "value" => "Hafta içi hergün 9:00-17:00", "type" => "text"]);
 
     }
 }

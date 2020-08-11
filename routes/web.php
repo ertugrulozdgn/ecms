@@ -15,13 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Auth::routes();
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-
                             //BACKEND
 
 Route::namespace('Backend')->group(function () {
@@ -83,14 +76,17 @@ Route::namespace('frontend')->group(function() {
     //HOME
     Route::get('/','HomeController@index')->name('home.Index');
 
-    //BLOGS
-    Route::get('/blogs','BlogController@index')->name('frontend.blog.Index');
+    Route::prefix('blogs')->group(function () {
 
-    //BLOG DETAIL
-    Route::get('/blog/{slug}-{id}','BlogController@show')->where([
-        'slug' => '[a-zA-Z-0-9-]+',
-        'id' => '[0-9]+'
-    ])->name('frontend.blog.Detail');
+        //BLOGS
+        Route::get('/','BlogController@index')->name('frontend.blog.Index');
+
+        //BLOG DETAIL
+        Route::get('/{slug}-{id}','BlogController@show')->where([
+            'slug' => '[a-zA-Z-0-9-]+',
+            'id' => '[0-9]+'
+        ])->name('frontend.blog.Detail');
+    });
 
     //SLIDER DETAIL
     Route::get('/slider/{slug}-{id}','SliderController@show')->where([
@@ -102,6 +98,16 @@ Route::namespace('frontend')->group(function() {
     Route::get('/page/{slug}','PageController@show')->where([
 
     ])->name('frontend.page.Detail');
+
+    //CONTACT
+    Route::get('/contact','HomeController@contact')->name('frontend.contact.index');
+
+});
+
+
+
+
+
 
 
 
@@ -125,6 +131,5 @@ Route::namespace('frontend')->group(function() {
         dd($bir,$iki,$uc);
 
     });
-});
 
 
