@@ -47,11 +47,6 @@
                         Sayfalar
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-{{--                        @foreach(App\Models\Page::orderBy('must')->get() as $page)--}}
-{{--                            <a class="dropdown-item" href="{{ $page->link }}"><i class="fas fa-angle-double-right text-muted"></i> {{ $page->title }}</a>--}}
-{{--                        @endforeach--}}
-
-                        {{-- YUKARIDAKİ GİBİDE OLUR --}}
                         @foreach($pagesNav as $pageNav)
                             <a class="dropdown-item" href="{{ $pageNav->link }}"><i class="fas fa-angle-double-right text-muted"></i> {{ $pageNav->title }}</a>
                         @endforeach

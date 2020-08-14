@@ -24,6 +24,9 @@ Route::namespace('Backend')->group(function () {
                 //DASHBOARD
                 Route::get('/','DefaultController@index')->name('admin.index');
 
+                //POSTS
+                Route::resource('post','PostController');
+
                 //BLOG
                 Route::resource('blog','BlogController');
                 Route::post('blog/sortable','BlogController@sortable')->name('blog.Sortable');
@@ -101,6 +104,7 @@ Route::namespace('frontend')->group(function() {
 
     //CONTACT
     Route::get('/contact','HomeController@contact')->name('frontend.contact.index');
+    Route::post('/contact','HomeController@sendMail')->name('frontend.contact.sendMail');
 
 });
 

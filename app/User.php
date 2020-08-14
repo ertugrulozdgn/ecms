@@ -4,6 +4,8 @@ namespace App;
 
 use App\Models\Blog;
 use App\Models\Page;
+use App\Models\Post;
+use App\Models\Role;
 use App\Models\Slider;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,6 +18,12 @@ class User extends Authenticatable
     protected $fillable = ['name', 'email', 'password',];
 
     protected $hidden = ['password', 'remember_token',];
+
+
+    public function posts()
+    {
+        return Post::where('user_id',$this->id)->get();
+    }
 
 
     public function blogs()

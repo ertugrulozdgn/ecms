@@ -148,7 +148,8 @@ return [
         'content' => 'İçerik',
         'name' => 'Ad Soyad',
         'password' => 'Şifre',
-        'email' => 'Email'
+        'email' => 'Email',
+        'phone' => 'Telefon Numarası'
     ],
 
 ];

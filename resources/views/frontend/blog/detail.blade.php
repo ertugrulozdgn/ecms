@@ -1,9 +1,14 @@
 @extends('frontend.layout')
-@section('title',$blog->title)
+@section('title','ornek suan ağlama')
 @section('content')
     <div class="container">
 
-        <h1 class="mt-4 mb-3">{{ $blog->title }}</h1>
+
+        <h1 class="mt-4">{{ $blog->title }}</h1>
+
+        <span class="text-muted">{{ $blog->user->name }} / {{ $blog->created_at->format('d-m-y h:i') }}</span>
+
+        <hr>
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -22,11 +27,6 @@
             <div class="col-lg-8">
 
                 <img class="img-fluid rounded" src="/storage/images/blogs/{{ $blog->image }}" alt="">
-
-                <hr>
-
-                <span class="text-muted mr-auto">Yayınlanma Zamanı : </span> {{ $blog->created_at->format('d-m-y h:i') }}
-                <span> YAZAR KISMI YAPILACAK UNUTMA</span>
 
                 <hr>
 
