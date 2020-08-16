@@ -7,13 +7,7 @@
                 @foreach($sliders as $slider)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}" style="background-image: url('/storage/images/sliders/{{ $slider->image }}')">
                     <div class="carousel-caption d-none d-md-block">
-                        @if(strlen($slider->url) > 0)
-                            <a href="{{ $slider->url }}">
-                                <h3>{{ $slider->title }} (link)</h3>
-                            </a>
-                        @else
-                            <a class="text-white" href="{{ route('frontend.slider.Detail',[$slider->slug,$slider->id]) }}"><h3>{{ $slider->title }}</h3></a>
-                        @endif
+                            <a class="text-white" href=""><h3>{{ $slider->title }}</h3></a>
                     </div>
                 </div>
                 @endforeach
@@ -42,9 +36,9 @@
                     <div class="card h-100">
                         <a href="{{ $blog->link }}"><img class="card-img-top" src="/storage/images/blogs/{{ $blog->image }}" alt=""></a>
                         <div class="card-body">
-                            <span class="text-muted">{{ $blog->created_at->diffForHumans() }}</span>
+                            <span class="text-muted">{{ $blog->published_at->diffForHumans() }}</span>
                             <h4 class="card-title">
-                                <a href="{{ $blog->link }}">{{ $blog->title }}</a>
+                                <a href="">{{ $blog->title }}</a>
                             </h4>
                             <p class="card-text">{!! substr($blog->content,0,140).'...' !!}</p>
                             <hr>

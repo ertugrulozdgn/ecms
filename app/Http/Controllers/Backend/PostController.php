@@ -3,83 +3,242 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Post;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('backend.posts.index');
+        $posts = Post::orderBy('must')->get();
+
+        return view('backend.posts.index',compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $categories = Category::orderBy('must')->get();
+
+        return view('backend.posts.create',compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'location' => 'required',
+            'title' => 'required',
+            'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,pjg,png|max:2048'
+        ]);
+
+        if (!empty($request->input('seo_title')))
+        {
+            $post = new Post;
+            $post->user_id = Auth::user()->id;
+            $post->category_id = $request-> input('category_id');
+            $post->status = $request->input('status');
+            $post->location = $request->input('location');
+            $post->title = $request->input('title');
+            $post->slug = Str::slug($post->title);
+            $post->seo_title = $request->input('seo_title');
+            $post->content = $request->input('content');
+            $post->published_at = $request->input('published_at');
+
+            $post_image = $post->slug.'.'.$request->image->getClientOriginalExtension();
+            $request->image->storeAs('public/images/posts',$post_image);
+            $post->image = $post_image;
+
+            $post->save();
+
+        } else {
+
+            $post = new Post;
+            $post->user_id = Auth::user()->id;
+            $post->category_id = $request-> input('category_id');
+            $post->status = $request->input('status');
+            $post->location = $request->input('location');
+            $post->title = $request->input('title');
+            $post->slug = Str::slug($post->title);
+            $post->seo_title = $request->input('title');
+            $post->content = $request->input('content');
+            $post->published_at = $request->input('published_at');
+
+            $post_image = $post->slug.'.'.$request->image->getClientOriginalExtension();
+            $request->image->storeAs('public/images/posts',$post_image);
+            $post->image = $post_image;
+
+            $post->save();
+        }
+
+
+        if ($request->get('save') == 'save')    // get('name') == value
+        {
+            return redirect(route('post.index'))->with('success','Kaydetme İşlemi Başarılı');
+
+        } elseif ($request->get('save') == 'save_and_continue')
+        {
+            return back()->with('success','Kaydetme İşlemi Başarılı');
+
+        } else {
+
+            return back()->with('error','Kaydetme İşlemi Başarız');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $post = Post::where('id',$id)->first();
+
+        $categories = Category::all();
+
+        return view('backend.posts.edit',compact('post','categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'location' => 'required',
+            'title' => 'required',
+            'content' => 'required',
+            'image' => $request->hasFile('image') ? 'required|image|mimes:jpeg,pjg,png|max:2048' : ''
+        ]);
+
+        if ($request->hasFile('image'))
+        {
+
+            $post = Post::find($id);
+
+            $post_image = $post->slug.'.'.$request->image->getClientOriginalExtension();
+            $request->image->storeAs('public/images/posts',$post_image);
+
+
+            if (!empty($request->input('seo_title')))
+            {
+
+                $post->user_id = Auth::user()->id;
+                $post->category_id = $request->input('category_id');
+                $post->status = $request->input('status');
+                $post->location = $request->input('location');
+                $post->title = $request->input('title');
+                $post->slug = Str::slug($request->input('title'));
+                $post->seo_title = $request->input('seo_title');
+                $post->content = $request->input('content');
+
+                $image_path = public_path('storage/images/posts/').$post->image;
+                @unlink($image_path);
+
+                $post->image = $post_image;
+                $post->save();
+
+            } else {
+
+                $post->user_id = Auth::user()->id;
+                $post->category_id = $request->input('category_id');
+                $post->status = $request->input('status');
+                $post->location = $request->input('location');
+                $post->title = $request->input('title');
+                $post->slug = Str::slug($request->input('title'));
+                $post->seo_title = $request->input('title');
+                $post->content = $request->input('content');
+
+                $image_path = public_path('storage/images/posts/').$post->image;
+                @unlink($image_path);
+
+                $post->image = $post_image;
+                $post->save();
+
+            }
+
+        } else {
+
+            if (!empty($request->input('seo_title')))
+            {
+
+                $post = Post::find($id);
+                $post->user_id = Auth::user()->id;
+                $post->category_id = $request->input('category_id');
+                $post->status = $request->input('status');
+                $post->location = $request->input('location');
+                $post->title = $request->input('title');
+                $post->slug = Str::slug($request->input('title'));
+                $post->seo_title = $request->input('seo_title');
+                $post->content = $request->input('content');
+                $post->save();
+
+            } else {
+
+                $post = Post::find($id);
+                $post->user_id = Auth::user()->id;
+                $post->category_id = $request->input('category_id');
+                $post->status = $request->input('status');
+                $post->location = $request->input('location');
+                $post->title = $request->input('title');
+                $post->slug = Str::slug($request->input('title'));
+                $post->seo_title = $request->input('title');
+                $post->content = $request->input('content');
+                $post->save();
+
+            }
+        }
+
+        if ($request->get('save') == 'save')    // get('name') == value
+        {
+            return redirect(route('post.index'))->with('success','Kaydetme İşlemi Başarılı');
+
+        } elseif ($request->get('save') == 'save_and_continue')
+        {
+            return back()->with('success','Kaydetme İşlemi Başarılı');
+
+        } else {
+
+            return back()->with('error','Kaydetme İşlemi Başarız');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+
+        $post = Post::find($id);
+
+        $image_path = public_path('storage/images/posts/').$post->image;
+        @unlink($image_path);
+
+        $post->delete();
+
+        if ($post->delete())
+        {
+            return 1;
+        }
+
+        return 0;
+    }
+
+
+    public function sortable()
+    {
+        foreach ($_POST['item'] as $key => $value)
+        {
+            $posts = Post::find(intval($value));
+            $posts->must = intval($key);
+            $posts->save();
+        }
+
+        echo true;
     }
 }

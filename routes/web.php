@@ -26,6 +26,7 @@ Route::namespace('Backend')->group(function () {
 
                 //POSTS
                 Route::resource('post','PostController');
+                Route::get('post/sortable','PostController@sortable')->name('post.Sortable');
 
                 //BLOG
                 Route::resource('blog','BlogController');

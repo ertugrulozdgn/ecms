@@ -9,10 +9,10 @@ use PharIo\Manifest\Extension;
 
 class Blog extends Model
 {
-//    public function getUserAttribute() //$blog->user
-//    {
-//        return User::find($this->user_id);
-//    }
+    public function getUserAttribute() //$blog->user
+    {
+        return User::find($this->user_id);
+    }
 
     public function user()
     {

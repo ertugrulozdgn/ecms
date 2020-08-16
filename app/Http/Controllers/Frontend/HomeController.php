@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
 use App\Models\Blog;
+use App\Models\Post;
 use App\Models\Slider;
 use App\User;
 use Illuminate\Http\Request;
@@ -23,35 +24,6 @@ class HomeController extends Controller
         $blogs = Cache::tags('blogs')->remember('blogs',60, function () {
             return Blog::with('user')->where('status','1')->orderBy('id','desc')->paginate(21);
         });
-        //
-        //    if (Cache::has('sliders'))
-        //    {
-        //        $sliders = Cache::get('sliders');
-//
-        //    } else {
-        //        $sliders = Slider::where('status','1')->orderBy('must')->get();
-        //        Cache::put('sliders',$sliders,60);
-        //    }
-
-
-//            if (Cache::has('blogs'))
-//            {
-//                $blogs = Cache::get('blogs');
-//
-//            } else {
-//                $blogs = Blog::where('status','1')->orderBy('id','desc')->paginate(21);
-//                Cache::put('blogs',$blogs,60);
-//            }
-
-        //---------------------------------------------------------
-
-//        $sliders = Cache::get('sliders', function () {
-//            return Slider::where('status','1')->orderBy('must')->get();
-//        });
-//
-//        $blogs = Cache::get('blogs',function () {
-//           return Blog::where('status','1')->orderBy('id','desc')->paginate(21);
-//        });
 
 
         return view('frontend.default.index',compact('sliders','blogs'));

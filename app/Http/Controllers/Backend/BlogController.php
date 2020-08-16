@@ -132,7 +132,7 @@ class BlogController extends Controller
 
     public function destroy($id)
     {
-        $blog = Blog::find(intval($id));
+        $blog = Blog::find($id);
 
         $image_path = public_path('/storage/images/blogs/').$blog->image;
         @unlink($image_path);

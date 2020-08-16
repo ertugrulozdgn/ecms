@@ -16,8 +16,6 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->integer('setting_id')->unsigned();
-            $table->integer('role_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->biginteger('hit')->default(0);
             $table->tinyInteger('status')->default(0);
@@ -28,6 +26,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->mediumText('image');
+            $table->dateTime('published_at');
             $table->timestamps();
         });
     }
