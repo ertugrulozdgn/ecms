@@ -28,17 +28,9 @@ Route::namespace('Backend')->group(function () {
                 Route::resource('post','PostController');
                 Route::get('post/sortable','PostController@sortable')->name('post.Sortable');
 
-                //BLOG
-                Route::resource('blog','BlogController');
-                Route::post('blog/sortable','BlogController@sortable')->name('blog.Sortable');
-
                 //PAGE
                 Route::resource('page','PageController');
                 Route::post('page/sortable','PageController@sortable')->name('page.Sortable');
-
-                //SLIDER
-                Route::resource('slider','SliderController');
-                Route::post('slider/sortable','SliderController@sortable')->name('slider.Sortable');
 
                 //PROFILE
                 Route::get('/profile/{id}/edit','ProfileController@edit')->name('profile.Edit');
@@ -92,23 +84,6 @@ Route::namespace('frontend')->group(function() {
         ])->name('frontend.post.Detail');
     });
 
-    Route::prefix('blogs')->group(function () {
-
-        //BLOGS
-        Route::get('/','BlogController@index')->name('frontend.blog.Index');
-
-        //BLOG DETAIL
-        Route::get('/{slug}-{id}','BlogController@show')->where([
-            'slug' => '[a-zA-Z-0-9-]+',
-            'id' => '[0-9]+'
-        ])->name('frontend.blog.Detail');
-    });
-
-    //SLIDER DETAIL
-    Route::get('/slider/{slug}-{id}','SliderController@show')->where([
-        'slug' => '[a-zA-Z-0-9-]+',
-        'id' => '[0-9]+'
-    ])->name('frontend.slider.Detail');
 
     //PAGE DETAIL(DROPDOWN MENU)
     Route::get('/page/{slug}','PageController@show')->where([

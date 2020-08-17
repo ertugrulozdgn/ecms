@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -25,7 +26,11 @@ class PostController extends Controller
     {
         $categories = Category::orderBy('must')->get();
 
-        return view('backend.posts.create',compact('categories'));
+        $a =  Config::get('post.location');
+
+        dd($a);
+
+        return view('backend.posts.create',compact('categories','a'));
     }
 
 

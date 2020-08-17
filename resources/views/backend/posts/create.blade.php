@@ -24,8 +24,11 @@
                             <div class="col-xs-12">
                                 <label>Yerleşim Türü <span style="color: #e02222">*</span></label>
                                 <select class="form-control" name="location">
-                                    <option value="1" {{ old('location') == 1 ? 'selected' : '' }}>Normal</option>
-                                    <option value="2" {{ old('location') == 2 ? 'selected' : '' }}>Manşet</option>
+{{--                                    <option value="1" {{ old('location') == 1 ? 'selected' : '' }}>Normal</option>--}}
+{{--                                    <option value="2" {{ old('location') == 2 ? 'selected' : '' }}>Manşet</option>--}}
+                                    @foreach($a as $a)
+                                        <option value="{{ $a->index }}">{{ $a }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
