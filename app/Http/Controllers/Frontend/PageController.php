@@ -7,7 +7,9 @@ use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
-class PageController extends Controller
+class
+
+PageController extends Controller
 {
     public function show($slug)
     {

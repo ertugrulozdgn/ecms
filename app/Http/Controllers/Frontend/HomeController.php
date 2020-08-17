@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
-use App\Models\Blog;
 use App\Models\Post;
-use App\Models\Slider;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
@@ -17,16 +14,19 @@ class HomeController extends Controller
 
     public function index()
     {
-        $sliders = Cache::tags('sliders')->remember('sliders', 60, function () {
-            return Slider::where('status','1')->orderBy('must')->get();
+
+        $post_headlines = Cache::tags('post_headlines')->remember('post_headlines',60,function () {
+            return Post::with('user')->where('location',2)->where('status',1)->orderBy('published_at','desc')->take(3)->get();
         });
 
-        $blogs = Cache::tags('blogs')->remember('blogs',60, function () {
-            return Blog::with('user')->where('status','1')->orderBy('id','desc')->paginate(21);
+        $used_ids = $post_headlines->pluck('id')->toArray();
+
+        $posts = Cache::tags('posts')->remember('posts',60,function () use ($used_ids){
+            return Post::whereNotIn('id',$used_ids)->where('status',1)->orderBy('published_at','desc')->paginate(18);
         });
 
 
-        return view('frontend.default.index',compact('sliders','blogs'));
+        return view('frontend.default.index',compact('post_headlines','posts'));
     }
 
 

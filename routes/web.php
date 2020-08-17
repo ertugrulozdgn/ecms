@@ -80,6 +80,18 @@ Route::namespace('frontend')->group(function() {
     //HOME
     Route::get('/','HomeController@index')->name('home.Index');
 
+
+    //POSTS
+    Route::prefix('post')->group(function () {
+        //Posts List
+        Route::get('/','PostController@list')->name('frontend.post.List');
+        //Post Detail
+        Route::get('/{slug}-{id}','PostController@show')->where([
+            'slug' => '[a-zA-Z-0-9-]+',
+            'id' => '[0-9]+'
+        ])->name('frontend.post.Detail');
+    });
+
     Route::prefix('blogs')->group(function () {
 
         //BLOGS

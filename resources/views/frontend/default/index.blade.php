@@ -4,10 +4,10 @@
     <header>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                @foreach($sliders as $slider)
-                <div class="carousel-item {{ $loop->first ? 'active' : '' }}" style="background-image: url('/storage/images/sliders/{{ $slider->image }}')">
+                @foreach($post_headlines as $post_headline)
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}" style="background-image: url('/storage/images/posts/{{ $post_headline->image }}')">
                     <div class="carousel-caption d-none d-md-block">
-                            <a class="text-white" href=""><h3>{{ $slider->title }}</h3></a>
+                            <a class="text-white" href="{{ $post_headline->link }}"><h3>{{ $post_headline->title }}</h3></a>
                     </div>
                 </div>
                 @endforeach
@@ -31,19 +31,19 @@
         <hr>
 
         <div class="row">
-            @foreach($blogs as $blog)
+            @foreach($posts as $post)
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="{{ $blog->link }}"><img class="card-img-top" src="/storage/images/blogs/{{ $blog->image }}" alt=""></a>
+                        <a href="{{ $post->link }}"><img class="card-img-top" src="/storage/images/posts/{{ $post->image }}" alt=""></a>
                         <div class="card-body">
-                            <span class="text-muted">{{ $blog->published_at->diffForHumans() }}</span>
+                            <span class="text-muted">{{ $post->published_at->diffForHumans() }}</span>
                             <h4 class="card-title">
-                                <a href="">{{ $blog->title }}</a>
+                                <a href="{{ $post->link }}">{{ $post->title }}</a>
                             </h4>
-                            <p class="card-text">{!! substr($blog->content,0,140).'...' !!}</p>
+                            <p class="card-text">{!! substr($post->content,0,140).'...' !!}</p>
                             <hr>
-                            <span class="text-muted mr-auto">{{ $blog->user->name }}</span>
-                            <span class="text-muted" style="float: right;"><i style="color: green;" class="fas fa-eye fa-sm"></i> {{ $blog->hit }}</span>
+                            <span class="text-muted mr-auto">{{ $post->user->name }}</span>
+                            <span class="text-muted" style="float: right;"><i style="color: green;" class="fas fa-eye fa-sm"></i> {{ $post->hit }}</span>
                         </div>
                     </div>
                 </div>

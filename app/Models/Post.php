@@ -22,6 +22,12 @@ class Post extends Model
 //        return User::find($this->user_id);
 //    }
 
+
+    public function getLinkAttribute()
+    {
+        return route('frontend.post.Detail',['slug' => $this->slug,'id' => $this->id]); //post->link
+    }
+
     public function getCategoryAttribute()    //burada bişey var use app\models\cateogry oluştursakta işe yaramıyor
     {
         return Category::find($this->category_id);

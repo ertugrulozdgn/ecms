@@ -39,7 +39,7 @@
                 </li>
 
                 <li class="nav-item {{ request()->route()->getName() == 'frontend.blog.Index' ? 'active' : ''}}">
-                    <a class="nav-link" href="{{ route('frontend.blog.Index') }}">Bloglar</a>
+                    <a class="nav-link" href="{{ route('frontend.post.List') }}">Bloglar</a>
                 </li>
 
                 <li class="nav-item dropdown">
