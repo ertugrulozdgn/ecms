@@ -14,8 +14,8 @@ class Controller extends BaseController
 
     public function __construct() {
 
-        $pagesNav = Page::orderBy('must')->get();
-
-        view()->share('pagesNav',$pagesNav);
+//        $pagesNav = Page::orderBy('must')->get();
+//
+//        view()->share('pagesNav',$pagesNav);
     }
 }

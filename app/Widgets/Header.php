@@ -4,6 +4,7 @@ namespace App\Widgets;
 
 use App\Models\Page;
 use Arrilot\Widgets\AbstractWidget;
+use Illuminate\Support\Facades\Cache;
 
 class Header extends AbstractWidget
 {
@@ -21,8 +22,10 @@ class Header extends AbstractWidget
     public function run()
     {
 
-//        $pages = Page::orderBy('must')->get();
-//
-//        return view('widgets.header',compact('pages'));
+        $pagesNav = Cache::tags('pagesNav')->remember('pages',60,function () {
+           return Page::orderBy('must')->get();
+        });
+
+        return view('widgets.header',compact('pagesNav'));
     }
 }

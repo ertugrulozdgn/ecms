@@ -123,6 +123,9 @@ class PostController extends Controller
 
             $post = Post::find($id);
 
+            $image_path = public_path('storage/images/posts/').$post->image;
+            @unlink($image_path);
+
             $post_image = $post->slug.'.'.$request->image->getClientOriginalExtension();
             $request->image->storeAs('public/images/posts',$post_image);
 
@@ -138,9 +141,6 @@ class PostController extends Controller
                 $post->slug = Str::slug($request->input('title'));
                 $post->seo_title = $request->input('seo_title');
                 $post->content = $request->input('content');
-
-                $image_path = public_path('storage/images/posts/').$post->image;
-                @unlink($image_path);
 
                 $post->image = $post_image;
                 $post->save();

@@ -22,18 +22,18 @@ class HomeController extends Controller
         $used_ids = $post_headlines->pluck('id')->toArray();
 
         $posts = Cache::tags('posts')->remember('posts',60,function () use ($used_ids){
-            return Post::whereNotIn('id',$used_ids)->where('status',1)->orderBy('published_at','desc')->paginate(18);
+            return Post::with('user')->whereNotIn('id',$used_ids)->where('status',1)->orderBy('published_at','desc')->paginate(18);
         });
 
 
         return view('frontend.default.index',compact('post_headlines','posts'));
     }
 
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
+//
+//    public function __construct()
+//    {
+//        parent::__construct();
+//    }
 
 
     public function contact()

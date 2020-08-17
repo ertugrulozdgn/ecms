@@ -26,21 +26,9 @@ class User extends Authenticatable
     }
 
 
-    public function blogs()
-    {
-        return Blog::where('user_id',$this->id)->get();
-    }
-
-
     public function pages()
     {
         return Page::where('user_id',$this->id)->get();
-    }
-
-
-    public function sliders()
-    {
-        return Slider::where('user_id',$this->id)->get();
     }
 
 
