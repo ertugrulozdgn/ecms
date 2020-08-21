@@ -7,7 +7,7 @@
                 <h3 class="box-title">Sayfa Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ route('page.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Backend\PageController@store') }}" method="POST" enctype="multipart/form-data">
                     @CSRF
 
                     <div class="form-group">

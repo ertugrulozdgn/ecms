@@ -48,7 +48,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.Authenticate') }}" method="post">
+        <form action="{{ action('Backend\DefaultController@authenticate') }}" method="post">
             @CSRF
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required>

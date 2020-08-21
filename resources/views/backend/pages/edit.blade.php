@@ -7,7 +7,7 @@
                 <h3 class="box-title">Blog Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ route('page.update',$page->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Backend\PageController@update',[ $page->id ]) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @CSRF
 
@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label>Seçilen Resim</label><br>
-                                <img width="300" class="img-fluid" src="/storage/images/blogs/{{ $page->image }}" alt="{{ $page->title }}">
+                                <img width="300" class="img-fluid" src="/storage/images/pages/{{ $page->image }}" alt="{{ $page->title }}">
                             </div>
                         </div>
                     </div>

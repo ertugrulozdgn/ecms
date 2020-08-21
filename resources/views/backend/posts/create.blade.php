@@ -7,7 +7,7 @@
                 <h3 class="box-title">Post Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Backend\PostController@store') }}" method="POST" enctype="multipart/form-data">
                     @CSRF
 
                     <div class="form-group">
@@ -24,8 +24,15 @@
                             <div class="col-xs-12">
                                 <label>Yerleşim Türü <span style="color: #e02222">*</span></label>
                                 <select class="form-control" name="location">
+<<<<<<< HEAD
                                     <option value="1" {{ old('location') == 1 ? 'selected' : '' }}>Normal</option>
                                     <option value="2" {{ old('location') == 2 ? 'selected' : '' }}>Manşet</option>
+=======
+                                    @foreach($locations as $key => $value)
+                                    <option value="{{ $key }}" {!! $edit > 0 && $post->location == $key ? 'selected' : '' !!}>{{ $value }}</option>
+                                    @endforeach
+
+>>>>>>> 73d8b4636b3ef79131c6d4f1b02726b04b5bc805
                                 </select>
                             </div>
                         </div>
@@ -98,7 +105,7 @@
                     <div class="box-footer">
                         <button class="btn btn-success" type="submit" name="save" value="save">Kaydet</button>
                         <button class="btn btn-success" type="submit" name="save" value="save_and_continue">Kaydet ve Devam Et</button>
-                        <a href="{{ route('post.index') }}" class="btn btn-danger">Vazgeç</a>
+                        <a href="{{ action('Backend\PostController@index') }}" class="btn btn-danger">Vazgeç</a>
                     </div>
                 </form>
             </div>

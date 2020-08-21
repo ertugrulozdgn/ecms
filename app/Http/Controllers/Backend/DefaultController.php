@@ -32,7 +32,7 @@ class DefaultController extends Controller
 
         if (Auth::attempt($credentials,$remember_token))
         {
-            return redirect()->intended(route('admin.index'));
+            return redirect()->intended(action('Backend\DefaultController@index'));
 
         } else {
             return back()->with('error','Email veya Şifre Hatalı!');
@@ -44,6 +44,6 @@ class DefaultController extends Controller
     public function logout() {
 
         Auth::logout();
-        return redirect(route('admin.Login'))->with('success','Çıkış İşlemi Başarıyla Yapıldı.');
+        return redirect(action('Backend\DefaultController@login'))->with('success','Çıkış İşlemi Başarıyla Yapıldı.');
     }
 }

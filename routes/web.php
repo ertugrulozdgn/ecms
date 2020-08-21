@@ -22,19 +22,18 @@ Route::namespace('Backend')->group(function () {
             Route::prefix('admin')->group(function () {
 
                 //DASHBOARD
-                Route::get('/','DefaultController@index')->name('admin.index');
-
+                Route::get('/','DefaultController@index');
                 //POSTS
                 Route::resource('post','PostController');
-                Route::get('post/sortable','PostController@sortable')->name('post.Sortable');
+                Route::get('post/sortable','PostController@sortable');
 
                 //PAGE
                 Route::resource('page','PageController');
-                Route::post('page/sortable','PageController@sortable')->name('page.Sortable');
+                Route::post('page/sortable','PageController@sortable');
 
                 //PROFILE
-                Route::get('/profile/{id}/edit','ProfileController@edit')->name('profile.Edit');
-                Route::post('/profile/{id}','ProfileController@update')->name('profile.Update');
+                Route::get('/profile/{id}/edit','ProfileController@edit');
+                Route::post('/profile/{id}','ProfileController@update');
 
                 //LOGOUT
                 Route::get('/logout','DefaultController@logout')->name('admin.Logout');

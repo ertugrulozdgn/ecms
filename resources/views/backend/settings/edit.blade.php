@@ -7,7 +7,7 @@
                 <h3 class="box-title">Ayarlar</h3>
             </div>
             <div class="box-body">
-                <form action="{{ route('settings.update',[$setting->id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Backend\SettingsController@update',[ $setting->id ]) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @CSRF
                     <div class="form-group">

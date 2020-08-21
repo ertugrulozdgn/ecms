@@ -6,7 +6,7 @@
                 <h3 class="box-title">Users</h3>
 
                 <div align="right">
-                    <a href="{{ route('user.create')}}"><button class="btn btn-success">Ekle</button></a>
+                    <a href="{{ action('Backend\UserController@create') }}"><button class="btn btn-success">Ekle</button></a>
                 </div>
             </div>
             <div class="box-body">
@@ -26,7 +26,7 @@
                             <td>{{ $user->name}}</td>
                             <td>{{ $user->role_name }}</td>
                             <td>{{ $user->status_name}}</td>
-                            <td width="5"><a href="{{ route('user.edit',$user->id) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
+                            <td width="5"><a href="{{ action('Backend\UserController@edit', [ $user->id ]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
                             <td width="5"><a href="javascript:void(0)"><i id="{{ $user->id }}" class="fa fa-trash-o fa-lg"></i></a></td>
                         </tr>
                     @endforeach

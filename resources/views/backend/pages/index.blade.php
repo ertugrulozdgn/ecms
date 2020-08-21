@@ -6,7 +6,7 @@
                 <h3 class="box-title">Sayfalar</h3>
 
                 <div align="right">
-                    <a href="{{ route('page.create')}}"><button class="btn btn-success">Ekle</button></a>
+                    <a href="{{ action('Backend\PageController@create')}}"><button class="btn btn-success">Ekle</button></a>
                 </div>
             </div>
             <div class="box-body">
@@ -27,7 +27,7 @@
                             <td>{{ $page->user->name}}</td>
                             <td>{{ $page->created_at->format('j F Y') }}</td>
                             <td>{{ $page->status_name }}</td>
-                            <td width="5"><a href="{{ route('page.edit',[$page->id]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
+                            <td width="5"><a href="{{ action('Backend\PageController@edit',[ $page->id]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
                             <td width="5"><a href="javascript:void(0)"><i id="{{ $page->id }}" class="fa fa-trash-o fa-lg"></i></a></td>
                         </tr>
                     @endforeach
@@ -56,7 +56,7 @@
                     $.ajax({
                         type: "POST",
                         data: data,
-                        url: "{{route('page.Sortable')}}",
+                        url: "{{ action('Backend\PageController@sortable') }}",
                         success: function (msg) {
                             // console.log(msg);
                             if (msg) {

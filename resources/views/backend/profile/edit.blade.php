@@ -7,7 +7,7 @@
                 <h3 class="box-title">Kullanıcı Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ route('profile.Update',Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Backend\ProfileController@update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
 {{--                    @method('put')             BUNU SORMAYI UNUTMA RESOURCE DİYEMİ BÖYLE !!!!!!!ÖNMELİ!!!!!!--}}
                     @CSRF
                     <div class="form-group">

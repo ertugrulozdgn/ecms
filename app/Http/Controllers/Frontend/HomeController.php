@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Data\PostData;
 use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
 use App\Models\Post;
@@ -15,15 +16,11 @@ class HomeController extends Controller
     public function index()
     {
 
-        $post_headlines = Cache::tags('post_headlines')->remember('post_headlines',60,function () {
-            return Post::with('user')->where('location',2)->where('status',1)->orderBy('published_at','desc')->take(3)->get();
-        });
+        $post_headlines = PostData::locationHeadlines();
 
         $used_ids = $post_headlines->pluck('id')->toArray();
 
-        $posts = Cache::tags('posts')->remember('posts',60,function () use ($used_ids){
-            return Post::with('user')->whereNotIn('id',$used_ids)->where('status',1)->orderBy('published_at','desc')->paginate(18);
-        });
+        $posts = PostData::locationNormal($used_ids);
 
 
         return view('frontend.default.index',compact('post_headlines','posts'));

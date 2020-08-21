@@ -1,0 +1,38 @@
+cms
+    admin
+        page
+            index
+            edit => 
+        category
+            index
+            edit
+        user
+        setting
+    post => Post modeli içerisinde post_type olarak ayrılıyorlar.
+        news => post_type => 0 => Haber
+        gallery => post_type => 1 => Galeri
+        video => post_type => 2 => Video
+    dashboard
+        index
+web
+    home
+        index.blade => action('Web\HomeController@index')
+    post
+        news
+            index.blade => action('Web\Post\NewsController@index')
+            show.blade => action('Web\Post\NewsController@show')
+        gallery
+            index
+            show
+        video
+            index
+            show
+        article
+            index
+            show
+            author
+        tag
+            index.blade
+        search
+            index.blade
+        

@@ -6,7 +6,7 @@
                 <h3 class="box-title">Post Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ route('post.update',$post->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Backend\PostController@update',[ $post->id ]) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @CSRF
 

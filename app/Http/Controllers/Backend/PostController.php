@@ -26,11 +26,9 @@ class PostController extends Controller
     {
         $categories = Category::orderBy('must')->get();
 
-        $a =  Config::get('post.location');
+        $locations =  Config::get('post.location');
 
-        dd($a);
-
-        return view('backend.posts.create',compact('categories','a'));
+        return view('backend.posts.create',compact('categories','locations'));
     }
 
 

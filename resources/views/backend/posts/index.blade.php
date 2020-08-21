@@ -6,7 +6,7 @@
                 <h3 class="box-title">Bloglar</h3>
 
                 <div align="right">
-                    <a href="{{ route('post.create') }}"><button class="btn btn-success">Ekle</button></a>
+                    <a href="{{ action('Backend\PostController@create') }}"><button class="btn btn-success">Ekle</button></a>
                 </div>
             </div>
             <div class="box-body">
@@ -30,7 +30,7 @@
                             <td>{{ $post->location_name }}</td>
                             <td>{{ $post->published_at}}</td>
                             <td>{{ $post->hit }}</td>
-                            <td width="5"><a href="{{ route('post.edit',$post->id) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
+                            <td width="5"><a href="{{ action('Backend\PostController@edit',[ $post->id ]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
                             <td width="5"><a href="javascript:void(0)"><i id="{{ $post->id }}" class="fa fa-trash-o fa-lg"></i></a></td>
                         </tr>
                     @endforeach
@@ -58,7 +58,7 @@
                     $.ajax({
                         type: "POST",
                         data: data,
-                        url: "{{route('post.Sortable')}}",
+                        url: "{{ action('Backend\PostController@sortable') }}",
                         success: function (msg) {
                             // console.log(msg);
                             if (msg) {
