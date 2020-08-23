@@ -22,7 +22,7 @@ class Header extends AbstractWidget
     public function run()
     {
 
-        $pagesNav = Cache::tags('pagesNav')->remember('pages',60,function () {
+        $pagesNav = Cache::tags('pagesNav')->remember('page',60,function () {
            return Page::orderBy('must')->get();
         });
 

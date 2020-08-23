@@ -66,7 +66,7 @@ Route::namespace('Backend')->group(function () {
 
                         //FRONTEND
 
-Route::namespace('frontend')->group(function() {
+Route::namespace('Frontend')->group(function() {
 
     //HOME
     Route::get('/','HomeController@index')->name('home.Index');
@@ -80,7 +80,7 @@ Route::namespace('frontend')->group(function() {
         Route::get('/{slug}-{id}','PostController@show')->where([
             'slug' => '[a-zA-Z-0-9-]+',
             'id' => '[0-9]+'
-        ])->name('frontend.post.Detail');
+        ])->name('web.post.Detail');
     });
 
 

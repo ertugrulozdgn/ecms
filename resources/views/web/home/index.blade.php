@@ -1,4 +1,4 @@
-@extends('frontend.layout')
+@extends('web.layout')
 @section('title', config('settings.Title'))
 @section('content')
     <header>

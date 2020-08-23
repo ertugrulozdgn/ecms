@@ -53,7 +53,7 @@ class PostData
 
     public static function pageGet(string $slug): ?Page
     {
-        return Cache::tags('pages')->remember('page_slug_' . $slug, 60, function () use ($slug) {
+        return Cache::tags('page')->remember('page_slug_' . $slug, 60, function () use ($slug) {
            return Page::where('slug',$slug)->where('status','1')->first();
         });
     }

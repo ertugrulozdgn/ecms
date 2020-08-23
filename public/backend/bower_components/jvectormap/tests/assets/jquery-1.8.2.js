@@ -7512,12 +7512,12 @@ jQuery.extend({
 		return jQuery.get( url, data, callback, "json" );
 	},
 
-	// Creates a full fledged settings object into target
-	// with both ajaxSettings and settings fields.
+	// Creates a full fledged setting object into target
+	// with both ajaxSettings and setting fields.
 	// If target is omitted, writes into ajaxSettings.
 	ajaxSetup: function( target, settings ) {
 		if ( settings ) {
-			// Building a settings object
+			// Building a setting object
 			ajaxExtend( target, jQuery.ajaxSettings );
 		} else {
 			// Extending ajaxSettings
@@ -8145,7 +8145,7 @@ var oldCallbacks = [],
 	rjsonp = /(=)\?(?=&|$)|\?\?/,
 	nonce = jQuery.now();
 
-// Default jsonp settings
+// Default jsonp setting
 jQuery.ajaxSetup({
 	jsonp: "callback",
 	jsonpCallback: function() {

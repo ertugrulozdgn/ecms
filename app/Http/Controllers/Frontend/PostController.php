@@ -29,7 +29,7 @@ class PostController extends Controller
         $posts = PostData::postList();
         abort_if(empty($posts), 404);
 
-        return view('frontend.post.list',compact('posts'));
+        return view('web.post.list',compact('posts'));
     }
 
     public function show(string $slug, int $id)  //Post detail
@@ -46,6 +46,6 @@ class PostController extends Controller
 
         $most_viewed = PostData::mostViewed();
 
-        return view('frontend.post.detail',compact('post','populer_posts','most_viewed'));
+        return view('web.post.detail',compact('post','populer_posts','most_viewed'));
     }
 }

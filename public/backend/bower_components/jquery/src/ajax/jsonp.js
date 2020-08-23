@@ -11,7 +11,7 @@ define( [
 var oldCallbacks = [],
 	rjsonp = /(=)\?(?=&|$)|\?\?/;
 
-// Default jsonp settings
+// Default jsonp setting
 jQuery.ajaxSetup( {
 	jsonp: "callback",
 	jsonpCallback: function() {

@@ -1,27 +1,33 @@
-@extends('backend.layout')
+@extends('cms.layout')
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
             <div class="box-header with-border">
-                <h3 class="box-title">Ayarlar</h3>
+                <h3 class="box-title">Users</h3>
+
+                <div align="right">
+                    <a href="{{ action('Backend\UserController@create') }}"><button class="btn btn-success">Ekle</button></a>
+                </div>
             </div>
             <div class="box-body">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th></th>
-                        <th>Anahtar</th>
-                        <th>Değer</th>
+                        <th>Resim</th>
+                        <th>Ad Soyad</th>
+                        <th>Yetki</th>
+                        <th>Durum</th>
                         <th>Eylem</th>
                     </tr>
                     <tbody>
-                    @foreach($settings as $setting)
-                        <tr id="item-{{ $setting->id }}">
-                            <td>{{ $setting->id }}</td>
-                            <td>{{ $setting->key}}</td>
-                            <td>{{ $setting->value }}</td>
-                            <td width="5"><a href="{{ action('Backend\SettingsController@edit', [ $setting->id ]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
-                            <td width="5"><a href="javascript:void(0)"><i id="{{ $setting->id }}" class="fa fa-trash-o fa-lg"></i></a></td>
+                    @foreach($users as $user)
+                        <tr id="item-{{ $user->id }}" class="{{ $user->status == 0 ? 'alert alert-light' : ''}}">
+                            <td class="align-middle"><img width="120" class="img-fluid" src="/storage/images/users/{{ $user->image }}" alt="{{ $user->title }}"></td>
+                            <td>{{ $user->name}}</td>
+                            <td>{{ $user->role_name }}</td>
+                            <td>{{ $user->status_name}}</td>
+                            <td width="5"><a href="{{ action('Backend\UserController@edit', [ $user->id ]) }}"><i class="fa fa-pencil-square fa-lg"></i></a></td>
+                            <td width="5"><a href="javascript:void(0)"><i id="{{ $user->id }}" class="fa fa-trash-o fa-lg"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -31,7 +37,7 @@
         </div>
     </div>
 
-    {{--Delete--}}
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -46,7 +52,7 @@
                 function () {
                     $.ajax({
                         type:"DELETE",
-                        url:"/admin/settings/"+destroy_id,
+                        url:"/admin/user/"+destroy_id,
                         success: function (msg) {
                             if (msg)
                             {

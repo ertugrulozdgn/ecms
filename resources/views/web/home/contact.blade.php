@@ -1,4 +1,4 @@
-@extends('frontend.layout')
+@extends('web.layout')
 @section('title','Bize Ulaşın')
 @section('content')
     <div class="container">
@@ -75,7 +75,7 @@
                 </p>
                 <p>
                     <abbr title="Email">Email</abbr>:
-                    <a href="mailto:name@example.com"> {{ config('settings.Email') }}
+                    <a href="mailto:name@example.com"> {{ config('setting') }}
                     </a>
                 </p>
                 <p>

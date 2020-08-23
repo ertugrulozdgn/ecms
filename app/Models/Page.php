@@ -16,7 +16,7 @@ class Page extends Model
 
     public function getLinkAttribute()
     {
-        return route('frontend.page.Detail',['slug' => $this->slug]);  //$blog->link
+        return route('web.page.Detail',['slug' => $this->slug]);  //$blog->link
     }
 
 

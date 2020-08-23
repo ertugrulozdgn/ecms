@@ -1,4 +1,4 @@
-@extends('frontend.layout')
+@extends('web.layout')
 @section('title','Bloglar')
 @section('content')
     <div class="container">
@@ -21,7 +21,7 @@
                             <h2 class="card-title">{{ $post->title }}</h2>
                             <p class="card-text">{!! substr($post->content,0,190).'...' !!}</p>
                             <a href="{{ $post->link }}" class="btn btn-primary">Daha Fazla &rarr;</a>
-                            {{-- Normalde {{ route('frontend.post.Detail',[$post->slug,$post->id]) }}  --}}
+                            {{-- Normalde {{ route('web.post.Detail',[$post->slug,$post->id]) }}  --}}
                         </div>
                     </div>
                 </div>

@@ -21,6 +21,6 @@ PageController extends Controller
 //            return Page::where('slug',$slug)->where('status','1')->first();
 //        });
 
-        return view('frontend.page.detail',compact('page'));
+        return view('web.page.detail',compact('page'));
     }
 }

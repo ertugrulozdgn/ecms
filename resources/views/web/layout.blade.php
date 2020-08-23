@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ config('settings.Description') }}">
-    <meta name="author" content="{{ config('settings.Author') }}">
+    <meta name="author" content="{{ config('setting') }}">
     <meta name="keywors" content="{!! config('settings.Keywords') !!}">
 
     <title>@yield('title')</title>

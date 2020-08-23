@@ -17,7 +17,7 @@ class PageController extends Controller
     {
         $pages = Page::orderBy('must')->paginate(10);
 
-        return view('backend.pages.index',compact('pages'));
+        return view('cms.admin.page.index',compact('pages'));
     }
 
 
@@ -25,7 +25,7 @@ class PageController extends Controller
     {
         $situations = PostData::get('post.status');
 
-        return view('backend.pages.create',compact('situations'));
+        return view('cms.admin.page.create',compact('situations'));
     }
 
 
@@ -76,7 +76,7 @@ class PageController extends Controller
 
         $situations = Config::get('post.status');
 
-        return view('backend.pages.edit',compact('page','situations'));
+        return view('cms.admin.page.edit',compact('page','situations'));
     }
 
 
@@ -99,7 +99,7 @@ class PageController extends Controller
 
 //            Storage::delete('public/images/blogs',$blog->image);
 
-            $image_path = public_path('storage/images/blogs/').$page->image;
+            $image_path = public_path('storage/images/pages/').$page->image;
             @unlink($image_path);
 
             $page_image = $page->slug.'.'.$request->image->getClientOriginalExtension();

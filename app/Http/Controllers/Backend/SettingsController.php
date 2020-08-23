@@ -15,7 +15,7 @@ class SettingsController extends Controller
     {
         $settings = Setting::all();
 
-        return view('backend.settings.index',compact('settings'));
+        return view('cms.admin.setting.index',compact('settings'));
     }
 
 
@@ -41,7 +41,7 @@ class SettingsController extends Controller
     {
         $setting = Setting::where('id',$id)->first();
 
-        return view('backend.settings.edit',compact('setting'));
+        return view('cms.admin.setting.edit',compact('setting'));
     }
 
 

@@ -1,4 +1,4 @@
-@extends('frontend.layout')
+@extends('web.layout')
 @section('title',$page->title)
 @section('content')
     <!-- Page Content -->

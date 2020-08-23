@@ -23,7 +23,7 @@ class HomeController extends Controller
         $posts = PostData::locationNormal($used_ids);
 
 
-        return view('frontend.default.index',compact('post_headlines','posts'));
+        return view('web.home.index',compact('post_headlines','posts'));
     }
 
 //
@@ -35,7 +35,7 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view('frontend.default.contact');
+        return view('web.default.contact');
     }
 
 

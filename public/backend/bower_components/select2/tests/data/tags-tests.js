@@ -79,7 +79,7 @@ test('does not create option if text is same but lowercase', function (assert) {
   });
 });
 
-test('does not trigger for additional pages', function (assert) {
+test('does not trigger for additional page', function (assert) {
   var data = new SelectTags($('#qunit-fixture .single'), options);
 
   data.query({

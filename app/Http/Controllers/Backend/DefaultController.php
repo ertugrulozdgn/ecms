@@ -10,7 +10,7 @@ class DefaultController extends Controller
 {
     public function index() {
 
-        return view('backend.default.index');
+        return view('auth.login');
 
     }
 
@@ -18,7 +18,7 @@ class DefaultController extends Controller
 
     public function login() {
 
-        return view('backend.default.login');
+        return view('cms.default.login');
 
     }
 

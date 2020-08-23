@@ -1,4 +1,4 @@
-@extends('frontend.layout')
+@extends('web.layout')
 @section('title',$post->seo_title)
 @section('content')
     <div class="container">
@@ -107,9 +107,9 @@
                     </div>
                 </div>
 
-                @include('frontend.inc.populer')
+                @include('web.inc.populer')
 
-                @include('frontend.inc.views')
+                @include('web.inc.views')
 
             </div>
 

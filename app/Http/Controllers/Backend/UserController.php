@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('backend.users.index',compact('users'));
+        return view('cms.admin.user.index',compact('users'));
     }
 
 
@@ -27,7 +27,7 @@ class UserController extends Controller
 
         $roles = Config::get('user.role');
 
-        return view('backend.users.create',compact('situations','roles'));
+        return view('cms.admin.user.create',compact('situations','roles'));
     }
 
 
@@ -77,7 +77,7 @@ class UserController extends Controller
 
         $situations = Config::get('post.status');
 
-        return view('backend.users.edit',compact('user','roles','situations'));
+        return view('cms.admin.user.edit',compact('user','roles','situations'));
     }
 
 
@@ -93,7 +93,7 @@ class UserController extends Controller
         if ($request->hasFile('image'))
         {
             $user = User::find($id);
-//            Storage::delete('public/images/users',$user->image);
+//            Storage::delete('public/images/user',$user->image);
             $image_path = public_path('storage/images/users/'.$user->image);
             @unlink($image_path);
 

@@ -1,24 +1,14 @@
 
-@extends('backend.layout')
+@extends('cms.layout')
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
             <div class="box-header with-border">
-                <h3 class="box-title">Blog Oluşturma</h3>
+                <h3 class="box-title">Sayfa Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ action('Backend\PageController@update',[ $page->id ]) }}" method="POST" enctype="multipart/form-data">
-                    @method('put')
+                <form action="{{ action('Backend\PageController@store') }}" method="POST" enctype="multipart/form-data">
                     @CSRF
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label>Seçilen Resim</label><br>
-                                <img width="300" class="img-fluid" src="/storage/images/pages/{{ $page->image }}" alt="{{ $page->title }}">
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <div class="row">
@@ -33,7 +23,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label>Başlık</label>
-                                <input class="form-control" type="text" name="title" value="{{ $page->title }}">
+                                <input class="form-control" type="text" name="title" value="{{ old('title') }}">
                             </div>
                         </div>
                     </div>
@@ -43,7 +33,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label>İçerik</label>
-                                <textarea id="editor" class="form-control" name="content">{{ $page->content }}</textarea>
+                                <textarea id="editor" class="form-control" name="content">{{ old('content') }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -54,7 +44,7 @@
                                 <label>Durumu</label>
                                 <select class="form-control" name="status">
                                     @foreach($situations as $key => $value)
-                                        <option value="{{ $key }}" {{ $page->status == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                        <option value="{{ $key }}" {{ old('status') == $key ? 'selected' : '' }}>{{ $value }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -73,4 +63,3 @@
         CKEDITOR.replace('editor')
     </script>
 @endsection
-

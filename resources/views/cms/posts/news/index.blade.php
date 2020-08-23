@@ -1,4 +1,4 @@
-@extends('backend.layout')
+@extends('cms.layout')
 @section('content')
     <div class="box box-primary">
         <div class="box-header">

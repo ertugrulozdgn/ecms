@@ -18,7 +18,7 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('must')->get();
 
-        return view('backend.posts.index',compact('posts'));
+        return view('cms.posts.news.index',compact('posts'));
     }
 
 
@@ -32,7 +32,7 @@ class PostController extends Controller
 
         $situations = Config::get('post.status');
 
-        return view('backend.posts.create',compact('categories','locations','situations','edit'));
+        return view('cms.posts.news.create',compact('categories','locations','situations','edit'));
     }
 
 
@@ -116,7 +116,7 @@ class PostController extends Controller
 
         $situations = Config::get('post.status');
 
-        return view('backend.posts.edit',compact('post','categories','locations','situations'));
+        return view('cms.posts.news.edit',compact('post','categories','locations','situations'));
     }
 
 

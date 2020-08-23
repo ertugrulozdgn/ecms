@@ -1,17 +1,17 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home.Index') }}">BLOG<small class="text-muted">TR</small></a>
+        <a class="navbar-brand" href="{{ action('Frontend\HomeController@index') }}">BLOG<small class="text-muted">TR</small></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{ request()->route()->getName() == 'home.Index' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('home.Index') }}">Anasayfa</a>
+                    <a class="nav-link" href="{{ action('Frontend\HomeController@index') }}">Anasayfa</a>
                 </li>
 
-                <li class="nav-item {{ request()->route()->getName() == 'frontend.blog.Index' ? 'active' : ''}}">
-                    <a class="nav-link" href="{{ route('frontend.post.List') }}">Bloglar</a>
+                <li class="nav-item {{ request()->route()->getName() == 'frontend.post.List' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{ action('Frontend\PostController@list') }}">Bloglar</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('frontend.contact.index') }}">Bize Ulaşın</a>
+                    <a class="nav-link" href="{{ action('Frontend\HomeController@contact') }}">Bize Ulaşın</a>
                 </li>
             </ul>
         </div>

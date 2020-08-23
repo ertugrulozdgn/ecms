@@ -14,7 +14,7 @@ class ProfileController extends Controller
     public function edit($id) {
 
         $user = User::where('id',auth()->user()->id)->first();
-        return view('backend.profile.edit',compact('user'));
+        return view('cms.admin.profile.edit',compact('user'));
     }
 
 
