@@ -24,15 +24,12 @@
                             <div class="col-xs-12">
                                 <label>Yerleşim Türü <span style="color: #e02222">*</span></label>
                                 <select class="form-control" name="location">
-<<<<<<< HEAD
-                                    <option value="1" {{ old('location') == 1 ? 'selected' : '' }}>Normal</option>
-                                    <option value="2" {{ old('location') == 2 ? 'selected' : '' }}>Manşet</option>
-=======
+                                    {{--<option value="1" {{ old('location') == 1 ? 'selected' : '' }}>Normal</option>--}}
+                                    {{--<option value="2" {{ old('location') == 2 ? 'selected' : '' }}>Manşet</option>--}}
                                     @foreach($locations as $key => $value)
-                                    <option value="{{ $key }}" {!! $edit > 0 && $post->location == $key ? 'selected' : '' !!}>{{ $value }}</option>
+{{--                                    <option value="{{ $key }}" {!! $edit > 0 && $post->location == $key ? 'selected' : '' !!}>{{ $value }}</option>--}}
+                                        <option value="{{ $key }}" {{ old('location') == $key ? 'selected' : '' }}>{{ $value }}</option>
                                     @endforeach
-
->>>>>>> 73d8b4636b3ef79131c6d4f1b02726b04b5bc805
                                 </select>
                             </div>
                         </div>
@@ -82,7 +79,7 @@
                                 <Label>Kategoriler <span style="color: #e02222">*</span></Label>
                                 <select class="form-control" name="category_id">
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('category_id') ? 'selected' : '' }}>{{ $category->title }}</option>
+                                        <option value=" {{ $category->id }}" {{ old('category_id') ? 'selected' : '' }}>{{ $category->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -95,8 +92,11 @@
                             <div class="col-xs-12">
                                 <label>Durum <span style="color: #e02222">*</span></label>
                                 <select class="form-control" name="status">
-                                    <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Aktif</option>
-                                    <option value="0" {{ old('status') == 0 ? 'selected' : ''}}>Pasif</option>
+                                    {{--<option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Aktif</option>--}}
+                                    {{--<option value="0" {{ old('status') == 0 ? 'selected' : ''}}>Pasif</option>--}}
+                                    @foreach( $situations as $key => $value)
+                                        <option value="{{ $key }}" {{ old('status') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

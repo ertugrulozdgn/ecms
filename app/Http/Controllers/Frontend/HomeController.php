@@ -18,7 +18,7 @@ class HomeController extends Controller
 
         $post_headlines = PostData::locationHeadlines();
 
-        $used_ids = $post_headlines->pluck('id')->toArray();
+        $used_ids = PostData::usedIds($post_headlines);
 
         $posts = PostData::locationNormal($used_ids);
 

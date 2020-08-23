@@ -24,11 +24,15 @@ class PostController extends Controller
 
     public function create()
     {
+        $edit = 0;
+
         $categories = Category::orderBy('must')->get();
 
         $locations =  Config::get('post.location');
 
-        return view('backend.posts.create',compact('categories','locations'));
+        $situations = Config::get('post.status');
+
+        return view('backend.posts.create',compact('categories','locations','situations','edit'));
     }
 
 
@@ -108,7 +112,11 @@ class PostController extends Controller
 
         $categories = Category::all();
 
-        return view('backend.posts.edit',compact('post','categories'));
+        $locations =  Config::get('post.location');
+
+        $situations = Config::get('post.status');
+
+        return view('backend.posts.edit',compact('post','categories','locations','situations'));
     }
 
 

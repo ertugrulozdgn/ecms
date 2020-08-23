@@ -57,4 +57,9 @@ class PostData
            return Page::where('slug',$slug)->where('status','1')->first();
         });
     }
+
+    public static function usedIds($post_headlines)
+    {
+        return  $post_headlines->pluck('id')->toArray();
+    }
 }

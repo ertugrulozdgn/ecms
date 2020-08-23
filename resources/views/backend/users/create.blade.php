@@ -61,16 +61,18 @@
                             <div class="col-xs-6">
                                 <label>Yetki</label>
                                 <select class="form-control" name="role">
-                                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                                    <option value="user" {{ old('role') == 'user' ? 'selected' : ''}}>Kullanıcı</option>
+                                    @foreach($roles as $key => $value)
+                                        <option value="{{ $key }}" {{ old('role') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="col-xs-6">
                                 <label>Durum</label>
                                 <select class="form-control" name="status">
-                                    <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Aktif</option>
-                                    <option value="0" {{ old('status') == 0 ? 'selected' : ''}}>Pasif</option>
+                                    @foreach($situations as $key => $value)
+                                        <option value="{{ $key }}" {{ old('status') == $key ? 'selected' : '' }}>{{$value}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

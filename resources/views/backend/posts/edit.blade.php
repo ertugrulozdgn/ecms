@@ -33,8 +33,11 @@
                             <div class="col-xs-12">
                                 <label>Yerleşim Türü <span style="color: #e02222">*</span></label>
                                 <select class="form-control" name="location">
-                                    <option value="1" {{ $post->location == 1 ? 'selected' : ''}}>Normal</option>
-                                    <option value="2" {{ $post->location == 2 ? 'selected' : '' }}>Manşet</option>
+                                    {{--<option value="1" {{ $post->location == 1 ? 'selected' : ''}}>Normal</option>--}}
+                                    {{--<option value="2" {{ $post->location == 2 ? 'selected' : '' }}>Manşet</option>--}}
+                                    @foreach($locations as $key => $value)
+                                        <option value="{{ $key }}" {{ $post->location == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -87,8 +90,11 @@
                             <div class="col-xs-12">
                                 <label>Durum <span style="color: #e02222">*</span></label>
                                 <select class="form-control" name="status">
-                                    <option value="1" {{ $post->status == 1 ? 'selected' : '' }}>Aktif</option>
-                                    <option value="0" {{ $post->status == 0 ? 'selected' : '' }}>Pasif</option>
+                                    {{--<option value="1" {{ $post->status == 1 ? 'selected' : '' }}>Aktif</option>--}}
+                                    {{--<option value="0" {{ $post->status == 0 ? 'selected' : '' }}>Pasif</option>--}}
+                                    @foreach($situations as $key => $value)
+                                        <option value="{{ $key }}" {{ $post->status = $key ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Config\FileLocator;
 
 class UserController extends Controller
 {
@@ -21,7 +23,11 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('backend.users.create');
+        $situations = Config::get('post.status');
+
+        $roles = Config::get('user.role');
+
+        return view('backend.users.create',compact('situations','roles'));
     }
 
 
@@ -67,7 +73,11 @@ class UserController extends Controller
     {
         $user = User::where('id',$id)->first();
 
-        return view('backend.users.edit',compact('user'));
+        $roles = Config::get('user.role');
+
+        $situations = Config::get('post.status');
+
+        return view('backend.users.edit',compact('user','roles','situations'));
     }
 
 

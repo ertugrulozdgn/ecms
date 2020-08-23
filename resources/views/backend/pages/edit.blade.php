@@ -53,8 +53,9 @@
                             <div class="col-xs-12">
                                 <label>Durumu</label>
                                 <select class="form-control" name="status">
-                                    <option value="1" {{ $page->status == 1 ? 'selected' : '' }}>AKtif</option>
-                                    <option value="0" {{ $page->status == 0 ? 'selected' : '' }}>Pasif</option>
+                                    @foreach($situations as $key => $value)
+                                        <option value="{{ $key }}" {{ $page->status == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

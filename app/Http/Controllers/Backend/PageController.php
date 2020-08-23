@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Data\PostData;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -21,7 +23,9 @@ class PageController extends Controller
 
     public function create()
     {
-        return view('backend.pages.create');
+        $situations = PostData::get('post.status');
+
+        return view('backend.pages.create',compact('situations'));
     }
 
 
@@ -70,7 +74,9 @@ class PageController extends Controller
     {
         $page = Page::where('id',$id)->first();   // $Page = Page::find($id);  aynı şey
 
-        return view('backend.pages.edit',compact('page'));
+        $situations = Config::get('post.status');
+
+        return view('backend.pages.edit',compact('page','situations'));
     }
 
 
