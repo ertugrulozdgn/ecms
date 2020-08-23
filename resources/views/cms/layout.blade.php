@@ -99,10 +99,10 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ action('Backend\ProfileController@edit', [ Auth::user()->id ]) }}" class="btn btn-default btn-flat">Profili Düzenle</a>
+                                    <a href="{{ action('Cms\Admin\ProfileController@edit', [ Auth::user()->id ]) }}" class="btn btn-default btn-flat">Profili Düzenle</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ action('Backend\DefaultController@logout') }}" class="btn btn-default btn-flat">Çıkış</a>
+                                    <a href="{{ action('Cms\Admin\AuthController@logout') }}" class="btn btn-default btn-flat">Çıkış</a>
                                 </div>
                             </li>
                         </ul>
@@ -134,17 +134,13 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENULER</li>
-                <li class="{{ request()->route()->getName() === 'admin.index' ? 'active' : '' }}"><a href="{{ action('Backend\DefaultController@index') }}"><i class="fa fa-link"></i> <span>Anasayfa</span></a></li>
-                <li class="{{ request()->route()->getName() === 'post.index' ? 'active' : ''}}"><a href="{{ action('Backend\PostController@index') }}"><i class="fa fa-list-alt"></i> <span>Post</span></a></li>
-                <li class="{{ request()->route()->getName() === 'page.index' ? 'active' : '' }}"><a href="{{ action('Backend\PageController@index') }}"><i class="fa fa-paper-plane"></i> <span>Pages</span></a></li>
-                <li class="{{ request()->route()->getName() === 'user.index' ? 'active' : '' }}"><a href="{{ action('Backend\UserController@index') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
-{{--                <li class="{{ request()->route()->getName() === 'settings.index' ? 'active' : '' }}" ><a href="{{ route('settings.index') }}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>--}}
-                <li class="{{ request()->route()->getName() === 'settings.index' ? 'active' : '' }}" ><a href="{{ action('Backend\SettingsController@index') }}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
-
-
+                <li class="{{ request()->route()->getName() === 'dashboard.index' ? 'active' : '' }}"><a href="{{ action('Cms\Admin\DashboardController@index') }}"><i class="fa fa-link"></i> <span>Anasayfa</span></a></li>
+                <li class="{{ request()->route()->getName() === 'news.index' ? 'active' : ''}}"><a href="{{ action('Cms\Post\NewsController@index') }}"><i class="fa fa-list-alt"></i> <span>Post</span></a></li>
+                <li class="{{ request()->route()->getName() === 'page.index' ? 'active' : '' }}"><a href="{{ action('Cms\Admin\PageController@index') }}"><i class="fa fa-paper-plane"></i> <span>Pages</span></a></li>
+                <li class="{{ request()->route()->getName() === 'user.index' ? 'active' : '' }}"><a href="{{ action('Cms\Admin\UserController@index') }}"><i class="fa fa-user"></i> <span>Users</span></a></li><li class="{{ request()->route()->getName() === 'settings.index' ? 'active' : '' }}" ><a href="{{ action('Cms\Admin\SettingController@index') }}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
 
                 <hr>
-                <li><a href="{{ action('Backend\DefaultController@logout') }}"><i class="fa fa-close"></i> <span>Çıkış</span></a></li>
+                <li><a href="{{ action('Cms\Admin\AuthController@logout') }}"><i class="fa fa-close"></i> <span>Çıkış</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>

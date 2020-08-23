@@ -7,7 +7,7 @@
                 <h3 class="box-title">Blog Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ action('Backend\PageController@update',[ $page->id ]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Cms\Admin\PageController@update',[ $page->id ]) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @CSRF
 

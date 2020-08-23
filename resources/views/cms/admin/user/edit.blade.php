@@ -7,7 +7,7 @@
                 <h3 class="box-title">Kullanıcı Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ action('Backend\UserController@update', [ $user->id ]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Cms\Admin\UserController@update', [ $user->id ]) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @CSRF
                     <div class="form-group">

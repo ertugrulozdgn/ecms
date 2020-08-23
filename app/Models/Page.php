@@ -16,7 +16,7 @@ class Page extends Model
 
     public function getLinkAttribute()
     {
-        return route('web.page.Detail',['slug' => $this->slug]);  //$blog->link
+        return action('Web\PageController@show', ['slug' => $this->slug, 'id' => $this->id]); //$page->link
     }
 
 

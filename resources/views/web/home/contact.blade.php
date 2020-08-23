@@ -32,7 +32,7 @@
                         <p> {{ session('success') }}</p>
                     </div>
                 @endif
-                <form action="{{ action('Frontend\HomeController@sendMail') }}" method="post">
+                <form action="{{ action('Web\HomeController@sendMail') }}" method="post">
                     @CSRF
                     <div class="control-group form-group">
                         <div class="controls">

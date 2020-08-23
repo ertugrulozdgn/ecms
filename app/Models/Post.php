@@ -25,7 +25,7 @@ class Post extends Model
 
     public function getLinkAttribute()
     {
-        return action('Frontend\PostController@show',['slug' => $this->slug, 'id' => $this->id]); //$post->link
+        return action('Web\Post\NewsController@show',['slug' => $this->slug, 'id' => $this->id]); //$post->link
     }
 
     public function getCategoryAttribute()    //burada bişey var use app\models\cateogry oluştursakta işe yaramıyor

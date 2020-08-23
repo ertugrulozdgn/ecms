@@ -6,7 +6,7 @@
                 <h3 class="box-title">Post Oluşturma</h3>
             </div>
             <div class="box-body">
-                <form action="{{ action('Backend\PostController@update',[ $post->id ]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ action('Cms\Post\NewsController@update',[ $post->id ]) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @CSRF
 
@@ -103,7 +103,7 @@
                     <div class="box-footer">
                         <button class="btn btn-success" type="submit" name="save" value="save">Kaydet</button>
                         <button class="btn btn-success" type="submit" name="save" value="save_and_continue">Kaydet ve Devam Et</button>
-                        <a href="{{ route('post.index') }}" class="btn btn-danger">Vazgeç</a>
+                        <a href="{{ action('Cms\Post\NewsController@index') }}" class="btn btn-danger">Vazgeç</a>
                     </div>
                 </form>
             </div>

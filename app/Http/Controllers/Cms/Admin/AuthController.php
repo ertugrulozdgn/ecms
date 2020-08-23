@@ -1,21 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Cms\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DefaultController extends Controller
+class AuthController extends Controller
 {
-    public function index() {
-
-        return view('cms.dashboard.index');
-
-    }
-
-
-
     public function login() {
 
         return view('auth.login');

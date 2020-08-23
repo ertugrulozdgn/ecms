@@ -17,26 +17,27 @@ use Illuminate\Support\Facades\Route;
 
                             //BACKEND
 
-Route::namespace('Backend')->group(function () {
+Route::namespace('Cms')->group(function () {
         Route::middleware(['user'])->group(function () {
             Route::prefix('admin')->group(function () {
 
                 //DASHBOARD
-                Route::get('/','DefaultController@index');
+                Route::get('/','Admin\DashboardController@index')->name('dashboard.index');
+
                 //POSTS
-                Route::resource('post','PostController');
-                Route::get('post/sortable','PostController@sortable');
+                Route::resource('news','Post\NewsController');
+                Route::get('news/sortable','Post\NewsController@sortable');
 
                 //PAGE
-                Route::resource('page','PageController');
-                Route::post('page/sortable','PageController@sortable');
+                Route::resource('page','Admin\PageController');
+                Route::post('page/sortable','Admin\PageController@sortable');
 
                 //PROFILE
-                Route::get('/profile/{id}/edit','ProfileController@edit');
-                Route::post('/profile/{id}','ProfileController@update');
+                Route::get('/profile/{id}/edit','Admin\ProfileController@edit');
+                Route::post('/profile/{id}','Admin\ProfileController@update');
 
                 //LOGOUT
-                Route::get('/logout','DefaultController@logout')->name('admin.Logout');
+                Route::get('/logout','Admin\AuthController@logout')->name('admin.Logout');
 
             });
 
@@ -44,10 +45,10 @@ Route::namespace('Backend')->group(function () {
                 Route::prefix('admin')->group(function() {
 
                     //USER
-                    Route::resource('user','UserController');
+                    Route::resource('user','Admin\UserController');
 
                     //SETTİNGS
-                    Route::resource('settings','SettingsController');
+                    Route::resource('settings','Admin\SettingController');
                 });
             });
         });
@@ -66,18 +67,18 @@ Route::namespace('Backend')->group(function () {
 
                         //FRONTEND
 
-Route::namespace('Frontend')->group(function() {
+Route::namespace('Web')->group(function() {
 
     //HOME
-    Route::get('/','HomeController@index')->name('home.Index');
+    Route::get('/','HomeController@index')->name('home.index');
 
 
     //POSTS
     Route::prefix('post')->group(function () {
         //Posts List
-        Route::get('/','PostController@list')->name('frontend.post.List');
+        Route::get('/','Post\NewsController@list')->name('frontend.post.List');
         //Post Detail
-        Route::get('/{slug}-{id}','PostController@show')->where([
+        Route::get('/{slug}-{id}','Post\NewsController@show')->where([
             'slug' => '[a-zA-Z-0-9-]+',
             'id' => '[0-9]+'
         ])->name('web.post.Detail');
