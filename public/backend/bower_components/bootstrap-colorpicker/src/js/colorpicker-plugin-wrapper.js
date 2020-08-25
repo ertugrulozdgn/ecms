@@ -26,5 +26,5 @@
   'use strict';
   //@colorpicker-color
   //@colorpicker-defaults
-  //@colorpicker-component
+  //@colorpicker-components
 }));

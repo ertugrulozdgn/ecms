@@ -24,7 +24,7 @@ class User
 
             $request->flash();
 
-            return redirect(route('admin.Login'))->with('error','Erişim Yetkiniz Yok!');
+            return redirect(action('Cms\Admin\AuthController@login'))->with('error','Erişim Yetkiniz Yok!');
         }
 
     }

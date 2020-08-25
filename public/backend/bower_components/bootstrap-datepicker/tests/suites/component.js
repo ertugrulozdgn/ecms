@@ -22,13 +22,13 @@ test('Component gets date/viewDate from input value', function(){
     datesEqual(this.dp.viewDate, UTCDate(2012, 1, 12));
 });
 
-test('Activation by component', function(){
+test('Activation by components', function(){
     ok(!this.picker.is(':visible'));
     this.addon.click();
     ok(this.picker.is(':visible'));
 });
 
-test('Dont activation (by disabled) by component', function(){
+test('Dont activation (by disabled) by components', function(){
     ok(!this.picker.is(':visible'));
     this.input.prop('disabled', true);
     this.addon.click();

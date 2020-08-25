@@ -2469,7 +2469,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Register a class-based component alias directive.
+         * Register a class-based components alias directive.
          *
          * @param string $class
          * @param string|null $alias
@@ -2498,7 +2498,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Get the registered class component aliases.
+         * Get the registered class components aliases.
          *
          * @return array
          * @static
@@ -2510,7 +2510,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Register a component alias directive.
+         * Register a components alias directive.
          *
          * @param string $path
          * @param string|null $alias
@@ -2629,7 +2629,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Indicate that component tags should not be compiled.
+         * Indicate that components tags should not be compiled.
          *
          * @return void
          * @static
@@ -2669,7 +2669,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Get a new component hash for a component name.
+         * Get a new components hash for a components name.
          *
          * @param string $component
          * @return string
@@ -2681,7 +2681,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Compile a class component opening.
+         * Compile a class components opening.
          *
          * @param string $component
          * @param string $alias
@@ -2696,7 +2696,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Compile the end-component statements into valid PHP.
+         * Compile the end-components statements into valid PHP.
          *
          * @return string
          * @static
@@ -2708,7 +2708,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Sanitize the given component attribute value.
+         * Sanitize the given components attribute value.
          *
          * @param mixed $value
          * @return mixed
@@ -5800,7 +5800,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Extract the trailing name component from a file path.
+         * Extract the trailing name components from a file path.
          *
          * @param string $path
          * @return string
@@ -7292,7 +7292,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Critical conditions.
          *
-         * Example: Application component unavailable, unexpected exception.
+         * Example: Application components unavailable, unexpected exception.
          *
          * @param string $message
          * @param array $context
@@ -9909,7 +9909,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Returns the path as relative reference from the current Request path.
          *
-         * Only the URIs path component (no schema, host etc.) is relevant and must be given.
+         * Only the URIs path components (no schema, host etc.) is relevant and must be given.
          * Both paths must be absolute and not contain relative parts.
          * Relative URLs from one resource to another are useful when generating self-contained downloadable document archives.
          * Furthermore, they can be used to reduce the link size in documents.
@@ -14904,7 +14904,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Start a component rendering process.
+         * Start a components rendering process.
          *
          * @param \Illuminate\View\View|\Closure|string $view
          * @param array $data
@@ -14918,7 +14918,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Get the first view that actually exists from the given list, and start a component.
+         * Get the first view that actually exists from the given list, and start a components.
          *
          * @param array $names
          * @param array $data
@@ -14932,7 +14932,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Render the current component.
+         * Render the current components.
          *
          * @return string
          * @static

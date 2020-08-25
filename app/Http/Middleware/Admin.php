@@ -21,7 +21,7 @@ class Admin
             return $next($request);
         } else {
 
-            return redirect(route('admin.Login'))->with('error','Erişim Yetkiniz Yok!');
+            return redirect(action('Cms\Admin\AuthController@logout'))->with('error','Erişim Yetkiniz Yok!');
         }
 
     }

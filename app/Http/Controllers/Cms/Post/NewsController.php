@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Cms\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -22,7 +25,9 @@ class NewsController extends Controller
     {
         $edit = 0;
 
-        $categories = Category::orderBy('must')->get();
+//        $categories = Category::orderBy('must')->get();
+
+        $categories = Category::pluck('title','id');
 
         $locations =  Config::get('post.location');
 
@@ -106,7 +111,9 @@ class NewsController extends Controller
     {
         $post = Post::where('id',$id)->first();
 
-        $categories = Category::all();
+//        $categories = Category::all();
+
+        $categories = Category::pluck('title', 'id');
 
         $locations =  Config::get('post.location');
 

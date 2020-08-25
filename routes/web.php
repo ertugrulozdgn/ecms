@@ -57,8 +57,8 @@ Route::namespace('Cms')->group(function () {
         Route::prefix('admin')->group(function() {
 
             //LOGIN
-            Route::get('/login','DefaultController@login')->name('admin.Login');
-            Route::post('/login','DefaultController@authenticate')->name('admin.Authenticate');
+            Route::get('/login','Admin\AuthController@login')->name('admin.Login');
+            Route::post('/login','Admin\AuthController@authenticate')->name('admin.Authenticate');
 
         });
 

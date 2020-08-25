@@ -1169,7 +1169,7 @@
         return;
       }
       e.preventDefault();
-      // component click requires us to explicitly show it
+      // components click requires us to explicitly show it
       $this.timepicker();
     }
   );

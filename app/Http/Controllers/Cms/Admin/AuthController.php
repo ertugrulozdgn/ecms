@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cms\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials,$remember_token))
         {
-            return redirect()->intended(action('Backend\DefaultController@index'));
+            return redirect()->intended(action('Cms\Admin\DashboardController@index'));
 
         } else {
             return back()->with('error','Email veya Şifre Hatalı!');

@@ -14,7 +14,7 @@ test('DATA-API: data-provide="datepicker" on input; click', function(){
     ok(input.data('datepicker'), 'datepicker is initialized by "focus" event');
 });
 
-test('DATA-API: data-provide="datepicker" on component', function(){
+test('DATA-API: data-provide="datepicker" on components', function(){
     var html, comp;
 
     html = '<div class="input-append date" data-provide="datepicker">'+
@@ -23,22 +23,22 @@ test('DATA-API: data-provide="datepicker" on component', function(){
 
     comp = $(html).appendTo('#qunit-fixture');
     comp.find('input').focus();
-    ok(comp.data('datepicker'), 'append component initialized by "focus" event on input');
+    ok(comp.data('datepicker'), 'append components initialized by "focus" event on input');
     comp.remove();
 
     comp = $(html).appendTo('#qunit-fixture');
     comp.find('input').click();
-    ok(comp.data('datepicker'), 'append component initialized by "click" event on input');
+    ok(comp.data('datepicker'), 'append components initialized by "click" event on input');
     comp.remove();
 
     comp = $(html).appendTo('#qunit-fixture');
     comp.find('.add-on').focus();
-    ok(comp.data('datepicker'), 'append component initialized by "focus" event on add-on');
+    ok(comp.data('datepicker'), 'append components initialized by "focus" event on add-on');
     comp.remove();
 
     comp = $(html).appendTo('#qunit-fixture');
     comp.find('.add-on').click();
-    ok(comp.data('datepicker'), 'append component initialized by "click" event on add-on');
+    ok(comp.data('datepicker'), 'append components initialized by "click" event on add-on');
     comp.remove();
 
 
@@ -48,22 +48,22 @@ test('DATA-API: data-provide="datepicker" on component', function(){
 
     comp = $(html).prependTo('#qunit-fixture');
     comp.find('input').focus();
-    ok(comp.data('datepicker'), 'prepend component initialized by "focus" event on input');
+    ok(comp.data('datepicker'), 'prepend components initialized by "focus" event on input');
     comp.remove();
 
     comp = $(html).prependTo('#qunit-fixture');
     comp.find('input').click();
-    ok(comp.data('datepicker'), 'prepend component initialized by "click" event on input');
+    ok(comp.data('datepicker'), 'prepend components initialized by "click" event on input');
     comp.remove();
 
     comp = $(html).prependTo('#qunit-fixture');
     comp.find('.add-on').focus();
-    ok(comp.data('datepicker'), 'prepend component initialized by "focus" event on add-on');
+    ok(comp.data('datepicker'), 'prepend components initialized by "focus" event on add-on');
     comp.remove();
 
     comp = $(html).prependTo('#qunit-fixture');
     comp.find('.add-on').click();
-    ok(comp.data('datepicker'), 'prepend component initialized by "click" event on add-on');
+    ok(comp.data('datepicker'), 'prepend components initialized by "click" event on add-on');
     comp.remove();
 });
 

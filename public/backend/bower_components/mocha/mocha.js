@@ -170,7 +170,7 @@ var JsDiff = (function() {
       pushComponent: function(components, value, added, removed) {
         var last = components[components.length-1];
         if (last && last.added === added && last.removed === removed) {
-          // We need to clone here as the component clone operation is just
+          // We need to clone here as the components clone operation is just
           // as shallow array clone
           components[components.length-1] =
             {value: this.join(last.value, value), added: added, removed: removed };
@@ -700,28 +700,28 @@ Progress.prototype.draw = function(ctx){
       , y = half
       , rad = half - 1
       , fontSize = this._fontSize;
-  
+
     ctx.font = fontSize + 'px ' + this._font;
-  
+
     var angle = Math.PI * 2 * (percent / 100);
     ctx.clearRect(0, 0, size, size);
-  
+
     // outer circle
     ctx.strokeStyle = '#9f9f9f';
     ctx.beginPath();
     ctx.arc(x, y, rad, 0, angle, false);
     ctx.stroke();
-  
+
     // inner circle
     ctx.strokeStyle = '#eee';
     ctx.beginPath();
     ctx.arc(x, y, rad - 1, 0, angle, true);
     ctx.stroke();
-  
+
     // text
     var text = this._text || (percent | 0) + '%'
       , w = ctx.measureText(text).width;
-  
+
     ctx.fillText(
         text
       , x - w / 2 + 1

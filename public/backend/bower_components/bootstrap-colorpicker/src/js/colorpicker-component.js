@@ -1,5 +1,5 @@
 /**
- * Colorpicker component class
+ * Colorpicker components class
  *
  * @param {Object|String} element
  * @param {Object} options

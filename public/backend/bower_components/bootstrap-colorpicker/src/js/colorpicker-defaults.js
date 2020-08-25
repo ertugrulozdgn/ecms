@@ -8,7 +8,7 @@ var defaults = {
   format: false, //forces a format
   input: 'input', // children input selector
   container: false, // container selector
-  component: '.add-on, .input-group-addon', // children component selector
+  component: '.add-on, .input-group-addon', // children components selector
   fallbackColor: false, // fallback color value. null = keeps current color.
   fallbackFormat: 'hex', // fallback color format
   hexNumberSignPrefix: true, // put a '#' (number sign) before hex strings
