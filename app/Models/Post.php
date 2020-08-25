@@ -36,20 +36,27 @@ class Post extends Model
 
     public function getLocationNameAttribute()
     {
-        switch ($this->location)
-        {
-            case 1:
-                return 'normal';
-                break;
+        $locations = [
+            1 => 'normal',
+            2 => 'manşet'
+        ];
 
-            case 2:
-                return 'manşet';
-                break;
+        return $locations[$this->location] ?? 'normal';
 
-            default:
-                return 'normal';
-                break;
-        }
+        // switch ($this->location)
+        // {
+        //     case 1:
+        //         return 'normal';
+        //         break;
+
+        //     case 2:
+        //         return 'manşet';
+        //         break;
+
+        //     default:
+        //         return 'normal';
+        //         break;
+        // }
 
     }
 }
