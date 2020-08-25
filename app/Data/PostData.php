@@ -30,6 +30,7 @@ class PostData
         });
     }
 
+    //Navbar bloglar kısmı
     public static function postList(): Collection
     {
         return Cache::tags('posts')->remember('posts', 60, function () {
@@ -53,7 +54,7 @@ class PostData
 
     public static function pageGet(string $slug): ?Page
     {
-        return Cache::tags('page')->remember('page_slug_' . $slug, 60, function () use ($slug) {
+        return Cache::tags('pages')->remember('page_slug_' . $slug, 60, function () use ($slug) {
            return Page::where('slug',$slug)->where('status','1')->first();
         });
     }
@@ -61,5 +62,13 @@ class PostData
     public static function usedIds($post_headlines)
     {
         return  $post_headlines->pluck('id')->toArray();
+    }
+
+    // Navbar bloglar kısmı
+    public static function pageNav(): Collection
+    {
+        return Cache::tags('pages')->remember('pages',60,function () {
+            return Page::orderBy('must')->get();
+        });
     }
 }

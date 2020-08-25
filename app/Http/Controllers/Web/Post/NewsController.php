@@ -30,10 +30,7 @@ class NewsController extends Controller
 //            return Post::orderBy('must')->where('status', 1)->take(5)->get();
 //        });
 
-        $populer_posts = PostData::populars(); // :: bir sınıfın statik yöntemine erişim sağlar.
 
-        $most_viewed = PostData::mostViewed();
-
-        return view('Web.post.news.show',compact('post','populer_posts','most_viewed'));
+        return view('Web.post.news.show',compact('post'));
     }
 }

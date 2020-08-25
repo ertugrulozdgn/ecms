@@ -3,12 +3,9 @@
 namespace App\Widgets;
 
 use App\Data\PostData;
-use App\Models\Page;
-use App\Models\Post;
 use Arrilot\Widgets\AbstractWidget;
-use Illuminate\Support\Facades\Cache;
 
-class Header extends AbstractWidget
+class Populer extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -23,10 +20,8 @@ class Header extends AbstractWidget
      */
     public function run()
     {
+        $populer_posts = PostData::populars(); // :: bir sınıfın statik yöntemine erişim sağlar.
 
-        $pagesNav = PostData::pageNav(); // :: bir sınıfın statik yöntemine erişim sağlar.
-
-
-        return view('widgets.header',compact('pagesNav'));
+        return view('widgets.populer', compact('populer_posts'));
     }
 }
