@@ -20,10 +20,10 @@ class AppServiceProvider extends ServiceProvider
     {
         config()->set('settings',Setting::pluck('value','key')->all());
 
-        $this->app["form"]::component('bsText', 'components.form.text', ['name', 'label_name', 'value' => null, 'attributes' => []]);
-        $this->app["form"]::component('bsFile', 'components.form.file', ['name', 'label_name', 'attributes' => []]);
-        $this->app["form"]->component('bsSelect', 'components.form.select', ['name', 'label_name','value','lists' => [], 'attributes' => []]);
-        $this->app["form"]->component('bsTextarea', 'components.form.textarea', ['name', 'label_name', 'value', 'attributes' => []]);
-        $this->app["form"]->component('bsDate', 'components.form.date', ['name', 'label_name', 'attributes' => []]);
+        $this->app["form"]::component('bsText', 'cms.components.form.text', ['name', 'label_name', 'value', 'attributes' => []]);
+        $this->app["form"]::component('bsFile', 'cms.components.form.file', ['name', 'label_name', 'attributes' => []]);
+        $this->app["form"]->component('bsSelect', 'cms.components.form.select', ['name','value','lists' => [], 'attributes' => []]);
+        $this->app["form"]->component('bsTextarea', 'cms.components.form.textarea', ['name', 'label_name', 'value', 'attributes' => []]);
+        $this->app["form"]->component('bsDate', 'cms.components.form.date', ['name', 'label_name', 'attributes' => []]);
     }
 }

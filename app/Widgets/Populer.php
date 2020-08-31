@@ -22,6 +22,6 @@ class Populer extends AbstractWidget
     {
         $populer_posts = PostData::populars(); // :: bir sınıfın statik yöntemine erişim sağlar.
 
-        return view('widgets.populer', compact('populer_posts'));
+        return view('web.widgets.populer', compact('populer_posts'));
     }
 }

@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function login() {
 
-        return view('auth.login');
+        return view('cms.auth.login');
 
     }
 
@@ -36,6 +36,6 @@ class AuthController extends Controller
     public function logout() {
 
         Auth::logout();
-        return redirect(action('Backend\DefaultController@login'))->with('success','Çıkış İşlemi Başarıyla Yapıldı.');
+        return redirect(action('Cms\Admin\AuthController@login'))->with('success','Çıkış İşlemi Başarıyla Yapıldı.');
     }
 }

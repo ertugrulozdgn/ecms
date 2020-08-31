@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Cms\Post;
 
+use App\Http\Requests\StoreNewsPost;
+use App\Http\Requests\UpdateNewsPost;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
@@ -25,26 +27,20 @@ class NewsController extends Controller
     {
         $edit = 0;
 
-//        $categories = Category::orderBy('must')->get();
+        $categories = Category::orderBy('must')->get();
 
-        $categories = Category::pluck('title','id');
+//        $categories = Category::pluck('title','id');
 
         $locations =  Config::get('post.location');
 
         $situations = Config::get('post.status');
 
-        return view('cms.posts.news.create',compact('categories','locations','situations','edit'));
+        return view('cms.posts.news.edit',compact('categories','locations','situations','edit'));
     }
 
 
-    public function store(Request $request)
+    public function store(StoreNewsPost $request)
     {
-        $request->validate([
-            'location' => 'required',
-            'title' => 'required',
-            'content' => 'required',
-            'image' => 'required|image|mimes:jpeg,pjg,png|max:2048'
-        ]);
 
         if (!empty($request->input('seo_title')))
         {
@@ -88,7 +84,7 @@ class NewsController extends Controller
 
         if ($request->get('save') == 'save')    // get('name') == value
         {
-            return redirect(route('post.index'))->with('success','Kaydetme İşlemi Başarılı');
+            return redirect(action('Cms\Post\NewsController@index'))->with('success','Kaydetme İşlemi Başarılı');
 
         } elseif ($request->get('save') == 'save_and_continue')
         {
@@ -109,28 +105,30 @@ class NewsController extends Controller
 
     public function edit($id)
     {
+        $edit = 1;
+
         $post = Post::where('id',$id)->first();
 
-//        $categories = Category::all();
+        $categories = Category::all();
 
-        $categories = Category::pluck('title', 'id');
+//        $categories = Category::pluck('title', 'id');
 
         $locations =  Config::get('post.location');
 
         $situations = Config::get('post.status');
 
-        return view('cms.posts.news.edit',compact('post','categories','locations','situations'));
+        return view('cms.posts.news.edit',compact('post','categories','locations','situations', 'edit'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UpdateNewsPost $request, $id)
     {
-        $request->validate([
-            'location' => 'required',
-            'title' => 'required',
-            'content' => 'required',
-            'image' => $request->hasFile('image') ? 'required|image|mimes:jpeg,pjg,png|max:2048' : ''
-        ]);
+//        $request->validate([
+//            'location' => 'required',
+//            'title' => 'required',
+//            'content' => 'required',
+//            'image' => $request->hasFile('image') ? 'required|image|mimes:jpeg,pjg,png|max:2048' : ''
+//        ]);
 
         if ($request->hasFile('image'))
         {
@@ -212,7 +210,7 @@ class NewsController extends Controller
 
         if ($request->get('save') == 'save')    // get('name') == value
         {
-            return redirect(route('post.index'))->with('success','Kaydetme İşlemi Başarılı');
+            return redirect(action('Cms\Post\NewsController@index'))->with('success','Kaydetme İşlemi Başarılı');
 
         } elseif ($request->get('save') == 'save_and_continue')
         {

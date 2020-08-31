@@ -27,6 +27,6 @@ class Header extends AbstractWidget
         $pagesNav = PostData::pageNav(); // :: bir sınıfın statik yöntemine erişim sağlar.
 
 
-        return view('widgets.header',compact('pagesNav'));
+        return view('web.widgets.header',compact('pagesNav'));
     }
 }

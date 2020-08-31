@@ -22,6 +22,6 @@ class Views extends AbstractWidget
     {
         $most_viewed = PostData::mostViewed(); // :: bir sınıfın statik yöntemine erişim sağlar.
 
-        return view('widgets.views', compact('most_viewed'));
+        return view('web.widgets.views', compact('most_viewed'));
     }
 }

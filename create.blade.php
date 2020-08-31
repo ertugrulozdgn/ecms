@@ -1,5 +1,5 @@
 
-@extends('cms.layout')
+@extends('resources.views.cms.layout')
 @section('content')
     <div class="box box-primary">
         <div class="box-header">
@@ -10,6 +10,10 @@
             <div class="box-body">
 
                 <div class="col-xs-12">
+                    {{-- UPDATE --}}
+                    {!! Form::model($post,['action' => ['Cms\Post\NewsController@update', $post->id], 'method' => 'PUT', 'files' => true]) !!}
+                    {{-- UPDATE --}}
+
                     {!! Form::open(['action' => 'Cms\Post\NewsController@store', 'method' => 'POST', 'files' => true]) !!}
 
                     {{ Form::bsFile('image', 'Kapak Resim') }}
@@ -68,7 +72,7 @@
 {{--                        <div class="row">--}}
 {{--                            <div class="col-xs-12">--}}
 {{--                                <label>Yayın Tarihi</label>--}}
-{{--                                    --}}{{--<input class="form-control " type="datetime" name="published_at" value="{{ date('d.m.yy H:i') }}">--}}
+{{--                                    <input class="form-control " type="datetime" name="published_at" value="{{ date('d.m.yy H:i') }}">--}}
 {{--                                <input class="form-control " type="datetime-local" name="published_at" value="{{ date('Y-m-d\TH:i') }}" readonly>--}}
 {{--                            </div>--}}
 {{--                        </div>--}}

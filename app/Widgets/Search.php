@@ -19,6 +19,6 @@ class Search extends AbstractWidget
      */
     public function run()
     {
-        return view('widgets.search');
+        return view('web.widgets.search');
     }
 }

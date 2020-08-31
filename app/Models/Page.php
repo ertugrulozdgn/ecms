@@ -8,9 +8,15 @@ use Illuminate\Support\Facades\Storage;
 
 class Page extends Model
 {
-    public function getUserAttribute()
+//    public function getUserAttribute()
+//    {
+//        return User::find($this->user_id);
+//    }
+
+
+    public function user()
     {
-        return User::find($this->user_id);
+        return $this->hasOne('App\User','id','user_id');
     }
 
 
