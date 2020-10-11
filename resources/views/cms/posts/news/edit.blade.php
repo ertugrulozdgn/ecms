@@ -31,6 +31,8 @@
                     <div class="form-group">
                         {{ Form::label('location', 'Yerleşim Türü') }}
 
+
+                        {{ Form::select('location', $locations, $edit > 0 ? $post->location : '') }}
                         <select class="form-control" name="location">
                             @foreach($locations as $key => $value)
                                 <option value="{{ $key }}" {{ $edit > 0 ? $post->location == $key ? 'selected' : '' : '' }}>{{ $value }}</option>

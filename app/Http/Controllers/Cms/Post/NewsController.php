@@ -123,12 +123,12 @@ class NewsController extends Controller
 
     public function update(UpdateNewsPost $request, $id)
     {
-//        $request->validate([
-//            'location' => 'required',
-//            'title' => 'required',
-//            'content' => 'required',
-//            'image' => $request->hasFile('image') ? 'required|image|mimes:jpeg,pjg,png|max:2048' : ''
-//        ]);
+        $request->validate([
+            'location' => 'required',
+            'title' => 'required',
+            'content' => 'required',
+            'image' => $request->hasFile('image') ? 'required|image|mimes:jpeg,pjg,png|max:2048' : ''
+        ]);
 
         if ($request->hasFile('image'))
         {
